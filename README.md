@@ -17,7 +17,7 @@ plt.ylabel("E (GPa)")
 plt.xlabel("UCS (MPa)")
 plt.show()
 ```
-![](images/example01.png)
+![](./pyrockmodulus/images/example01.png)
 
 2. Plot the Modulus Ratio with all the categories without the classification. Legend enabled. 
 
@@ -32,7 +32,7 @@ plt.xlabel("UCS (MPa)")
 plt.legend()
 plt.show()
 ```
-![](images/example02.png)
+![](./pyrockmodulus/images/example02.png)
 
 3. Plot the Modulus Ratio of just the Sedimentary clusters overlaid with data from tests.
 
@@ -51,7 +51,27 @@ plt.xlabel("UCS (MPa)")
 plt.legend()
 plt.show()
 ```
- ![](images/example_withdata.png)
+ ![](./pyrockmodulus/images/example_withdata.png)
+
+## pyrockmodulus.strength_ratio()
+
+Loads the constructed Tatone et al. UCS:BDS clusters and plots them based on the Major Rock Type *(i.e., Igneous / Metamorphic / Sedimentary)*.
+- Plot all Major Rock Type in one graph.
+- Plots them individually.
+
+The functionality is similar to that of the modulus ratio. 
+
+```python
+import pyrockmodulus
+import matplotlib.pyplot as plt
+
+xx = pyrockmodulus.strength_ratio()
+xx.initial_processing(plot_all_clusters=False, rock_type_to_plot='Sedimentary')
+plt.ylabel("BDS (MPa)")
+plt.xlabel("UCS (MPa)")
+plt.show()
+```
+![](./pyrockmodulus/images/example06.png)
 
 ## pyrockmodulus.poisson_density()
 
@@ -67,7 +87,7 @@ ax1.axvline(2.0, lw=1, ls='--')
 plt.show()
 ```
 
-![](images/example_PR_DEN.png)
+![](./pyrockmodulus/images/example_PR_DEN.png)
 
 ## UCS_Descriptions.py
 
@@ -95,5 +115,5 @@ import matplotlib.pyplot as plt
 ucs_class = ucs_classification_plot.initial_processing()
 plt.show()
 ```
-![](images/example04.png)
+![](./pyrockmodulus/images/example04.png)
 

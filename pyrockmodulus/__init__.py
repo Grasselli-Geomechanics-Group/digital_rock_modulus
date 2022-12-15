@@ -30,10 +30,12 @@ except AssertionError:
 from .pyrockmodulus import (
     modulus_ratio,
     poisson_density,
+    strength_ratio,
 )
 
 # Load sub-routine modules py files
 from . import (
     ucs_descriptions,
     formatting_codes,
+    rock_variables,
 )

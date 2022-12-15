@@ -16,6 +16,10 @@ try:
     from . import formatting_codes
 except ImportError:
     import formatting_codes
+try:
+    from . import rock_variables
+except ImportError:
+    import rock_variables
 
 # START OF EXECUTION
 abs_start = time.time()
@@ -33,30 +37,21 @@ my_path = os.path.dirname(
     os.path.abspath(__file__))  # Figures out the absolute path for you in case your working directory moves around.
 
 
+##TODO:
+# Allow to reset the xaxis and yaxis and house all the information (MR and SR)
+# Allow to change the colors and have more control over what to plot in terms of sub-category of the rock type (MR and SR)
+# Option to load csv for the poisson-density plots.
+
 class modulus_ratio:
     """
     Based on the classification of Deere DU, Miller RP. Engineering Classification and Index Properties for Intact Rocks. Fort Belvoir, VA: Defense Technical Information Center; 1966.
     Data digitization courtesy of Rohatgi, Ankit. "WebPlotDigitizer." (2017).
 
-    # ADVANCED: By assigning the *_rocktype_deere_miller_all* variable, more control over the clusters being plotted is gained.
+    # ADVANCED: By assigning the *_rocktype_dictionary* variable, more control over the clusters being plotted is gained.
     """
-    ##TODO:
-    # Allow to reset the xaxis and yaxis and house all the information
-    # Allow to change the colors and have more control over what to plot in terms of sub-category of the rock type
 
-    # Dictionary to hold Rock Category
-    _rocktype_deere_miller_all = {"Diabase": ["Igneous", 'blue', 'ID'],
-                                 "Granite": ["Igneous", 'black', "IG"],
-                                 "Basalt": ["Igneous", 'red', "IF"],
-                                 "Quartzite": ["Metamorphic", 'blue', ],
-                                 "Gneiss": ["Metamorphic", 'red', "MG"],
-                                 "Marble": ["Metamorphic", 'black', "MM"],
-                                 "Schist_Flat": ["Metamorphic", 'darkgreen', "MSpp"],
-                                 "Schist_Perp": ["Metamorphic", 'olive', "MSpl"],
-                                 "Limestone": ["Sedimentary", 'black', "SL"],
-                                 "Mudstone": ["Sedimentary", 'grey', "SSh"],
-                                 "Sandstone": ["Sedimentary", 'red', "SS"],
-                                 "Shale": ["Sedimentary", 'blue', 'SSh']}
+    # Load default variables
+    _rocktype_dictionary = rock_variables._rocktype_dictionary
 
     def load_data(self, df_deere_miller_data):
         """
@@ -69,7 +64,7 @@ class modulus_ratio:
         :rtype: dict
         """
 
-        global df_deere_miller
+        # global df_deere_miller
 
         # Load deere-miller digitized plots
         # Data digitization courtesy of Rohatgi, Ankit. "WebPlotDigitizer." (2017).
@@ -120,7 +115,7 @@ class modulus_ratio:
                             fontweight='bold')
 
 
-    def abline(self, slope, intercept, dr_state, multiplier=1, ratio='', ax=None):
+    def abline(self, slope, intercept, dr_state, multiplier=1, ratio='', ax=None, x_text_loc=0.15):
         """
         Function to plot the slopped lines based on a slope and a y-intercept, basically mx+c. It is defined to form the Low/Avg/High MR ratio in the deere-miller classification plot.
 
@@ -136,6 +131,8 @@ class modulus_ratio:
         :type ratio: str
         :param ax: Matplotlib Axis
         :type ax: matplotlib
+        :param x_text_loc: slope to write text
+        :type x_text_loc: float
 
         :return:
         :rtype:
@@ -151,8 +148,7 @@ class modulus_ratio:
         y_vals = intercept + (slope / multiplier) * x_vals
 
         # X-Location of text
-        x_text_loc = 0.15
-        txt_slope = np.rad2deg(np.arctan2(np.log(self._ymax-self._ymin), np.log(self._xmax-(self._xmin))))
+        txt_slope = np.rad2deg(np.arctan2(np.log(self._ymax - self._ymin), np.log(self._xmax - (self._xmin))))
 
         # Plot the mx+c line within axis limits
         # Y-value of text based on mx+c where X is predefined
@@ -189,16 +185,15 @@ class modulus_ratio:
                 "If all clusters is enabled. r_type should not be specified.")
 
         # Load dictionary of all the clusters and their default plotting information.
-        # rocktype_deere_miller = rocktype_deere_miller_all
         if plot_all_clusters_bool:
             # Plot all k,v pair as Rock Type name (k) and cluster area (v)
-            for k, v in self._rocktype_deere_miller_all.items():
-                self.plot_clusters(k, v, ax, df_of_clusters_deere_miller)
+            for k, v in rock_variables._rocktype_dictionary.items():
+                modulus_ratio.plot_clusters(self, k, v, ax, df_of_clusters_deere_miller)
         else:
             # Load k,v pair as Rock Type name (k) and cluster area (v)
-            for k, v in self._rocktype_deere_miller_all.items():
+            for k, v in rock_variables._rocktype_dictionary.items():
                 if v[0] == r_type:
-                    self.plot_clusters(k ,v, ax, df_of_clusters_deere_miller)
+                    modulus_ratio.plot_clusters(self, k ,v, ax, df_of_clusters_deere_miller)
 
 
     def plot_clusters(self, k, v, ax, df_of_clusters_deere_miller):
@@ -219,20 +214,23 @@ class modulus_ratio:
         """
 
         # For Shale and Sandstone, plot open-ended clusters
-        if k in ['Sandstone', 'Shale']:
-            ax.plot(df_of_clusters_deere_miller[k][0], df_of_clusters_deere_miller[k][1], label=k, color=v[1], linewidth=1,
-                    linestyle='--')
-        # Schist has 2 areas
-        elif k == 'Schist_Perp':
-            ax.fill(df_of_clusters_deere_miller['Schist_Perp'][0], df_of_clusters_deere_miller['Schist_Perp'][1], fill=False,
-                    label='Schist Perpendicular', color=v[1], linewidth=1, linestyle='--')
-        elif k == 'Schist_Flat':
-            ax.fill(df_of_clusters_deere_miller['Schist_Flat'][0], df_of_clusters_deere_miller['Schist_Flat'][1], fill=False,
-                    label='Schist Parallel', color=v[1], linewidth=1, linestyle=':')
+        if k not in df_of_clusters_deere_miller.keys():
+            return
         else:
-            cleanedListx = df_of_clusters_deere_miller[k][0][~np.isnan(df_of_clusters_deere_miller[k][0])]
-            cleanedListy = df_of_clusters_deere_miller[k][1][~np.isnan(df_of_clusters_deere_miller[k][1])]
-            ax.fill(cleanedListx, cleanedListy, fill=False, label=k, color=v[1], linewidth=1, closed=True)
+            if k in ['Sandstone', 'Shale']:
+                ax.plot(df_of_clusters_deere_miller[k][0], df_of_clusters_deere_miller[k][1], label=k, color=v[1], linewidth=1,
+                        linestyle='--')
+            # Schist has 2 areas
+            elif k == 'Schist_Perp':
+                ax.fill(df_of_clusters_deere_miller['Schist_Perp'][0], df_of_clusters_deere_miller['Schist_Perp'][1], fill=False,
+                        label='Schist Perpendicular', color=v[1], linewidth=1, linestyle='--')
+            elif k == 'Schist_Flat':
+                ax.fill(df_of_clusters_deere_miller['Schist_Flat'][0], df_of_clusters_deere_miller['Schist_Flat'][1], fill=False,
+                        label='Schist Parallel', color=v[1], linewidth=1, linestyle=':')
+            else:
+                cleanedListx = df_of_clusters_deere_miller[k][0][~np.isnan(df_of_clusters_deere_miller[k][0])]
+                cleanedListy = df_of_clusters_deere_miller[k][1][~np.isnan(df_of_clusters_deere_miller[k][1])]
+                ax.fill(cleanedListx, cleanedListy, fill=False, label=k, color=v[1], linewidth=1, closed=True)
 
 
     def format_axis(self, ax, state='', major_axis_vline = True):
@@ -260,9 +258,9 @@ class modulus_ratio:
             axis.set_major_formatter(formatter)
 
         if not state:
-            # Draw SLopped line to presents different Areas
-            self.abline(200 , 0, "line", 1000, '', ax)  # Slope of Strength Ratio Low:Average MPa to GPa
-            self.abline(500 , 0, "line", 1000, '', ax)  # Slope of Strength Ratio Average:High MPa to GPa
+            # Draw Slopped line to presents different Areas
+            self.abline(200 , 0, "line", 1000, '', ax)  # Slope of Modulus Ratio Low:Average MPa to GPa
+            self.abline(500 , 0, "line", 1000, '', ax)  # Slope of Modulus Ratio Average:High MPa to GPa
 
             # Text to Classify the MR domains
             self.abline(800 , 0, "text", 1000, "High MR",ax)  # High MR
@@ -318,36 +316,12 @@ class poisson_density():
     Load Poisson Ratio and Density information
     """
 
-    _poisson_density_range = [
-        {'Rock Type': 'Andesite', 'Group': 'Igneous', 'Min_P': 0.2, 'Max_P': 0.35, 'Min_D': 2.172, 'Max_D': 3.052},
-        {'Rock Type': 'Basalt', 'Group': 'Igneous', 'Min_P': 0.1, 'Max_P': 0.35, 'Min_D': 0.736, 'Max_D': 3.124},
-        {'Rock Type': 'Claystone', 'Group': 'Sedimentary', 'Min_P': 0.25, 'Max_P': 0.4, 'Min_D': 1.8, 'Max_D': 2.2},
-        {'Rock Type': 'Conglomerate', 'Group': 'Sedimentary', 'Min_P': 0.1, 'Max_P': 0.4, 'Min_D': 2.47, 'Max_D': 2.76},
-        {'Rock Type': 'Diabase/Dolerite', 'Group': 'Igneous', 'Min_P': 0.1, 'Max_P': 0.35, 'Min_D': 2.296, 'Max_D': 3.19},
-        {'Rock Type': 'Diorite', 'Group': 'Igneous', 'Min_P': 0.2, 'Max_P': 0.3, 'Min_D': 2.03, 'Max_D': 3.124},
-        {'Rock Type': 'Dolomite', 'Group': 'Sedimentary', 'Min_P': 0.15, 'Max_P': 0.35, 'Min_D': 2.4, 'Max_D': 2.85},
-        {'Rock Type': 'Gabbro', 'Group': 'Igneous', 'Min_P': 0.1, 'Max_P': 0.38, 'Min_D': 2.7, 'Max_D': 3.19},
-        {'Rock Type': 'Gneiss', 'Group': 'Metamorphic', 'Min_P': 0.1, 'Max_P': 0.3, 'Min_D': 2.064, 'Max_D': 3.36},
-        {'Rock Type': 'Granite', 'Group': 'Igneous', 'Min_P': 0.1, 'Max_P': 0.33, 'Min_D': 2.4, 'Max_D': 2.785},
-        {'Rock Type': 'Granodiorite', 'Group': 'Igneous', 'Min_P': 0.15, 'Max_P': 0.25, 'Min_D': 2.63, 'Max_D': 2.74},
-        {'Rock Type': 'Greywacke', 'Group': 'Sedimentary', 'Min_P': 0.08, 'Max_P': 0.23, 'Min_D': 2.41, 'Max_D': 2.77},
-        {'Rock Type': 'Limestone', 'Group': 'Sedimentary', 'Min_P': 0.1, 'Max_P': 0.33, 'Min_D': 1.31, 'Max_D': 2.92},
-        {'Rock Type': 'Marble', 'Group': 'Metamorphic', 'Min_P': 0.15, 'Max_P': 0.3, 'Min_D': 2.64, 'Max_D': 3.02},
-        {'Rock Type': 'Marl', 'Group': 'Sedimentary', 'Min_P': 0.13, 'Max_P': 0.33, 'Min_D': 1.86, 'Max_D': 2.69},
-        {'Rock Type': 'Norite', 'Group': 'Igneous', 'Min_P': 0.2, 'Max_P': 0.25, 'Min_D': 2.72, 'Max_D': 3.02},
-        {'Rock Type': 'Quartzite', 'Group': 'Metamorphic', 'Min_P': 0.1, 'Max_P': 0.33, 'Min_D': 2.55, 'Max_D': 3.05},
-        {'Rock Type': 'Rock Salt', 'Group': 'Sedimentary', 'Min_P': 0.05, 'Max_P': 0.3, 'Min_D': 2.1, 'Max_D': 2.9},
-        {'Rock Type': 'Sandstone', 'Group': 'Sedimentary', 'Min_P': 0.05, 'Max_P': 0.4, 'Min_D': 1.44, 'Max_D': 2.8},
-        {'Rock Type': 'Shale', 'Group': 'Sedimentary', 'Min_P': 0.05, 'Max_P': 0.32, 'Min_D': 1.6, 'Max_D': 2.92},
-        {'Rock Type': 'Siltstone', 'Group': 'Sedimentary', 'Min_P': 0.13, 'Max_P': 0.35, 'Min_D': 1.11, 'Max_D': 2.87},
-        {'Rock Type': 'Tuff', 'Group': 'Igneous', 'Min_P': 0.1, 'Max_P': 0.28, 'Min_D': 1.6, 'Max_D': 2.78}
-    ]
 
     def initial_processing(self):
         """
         Load the variables and initialise the dataframe.
 
-        :return: DataFrame containing the Min/Max Poisson Ratio and the Min/Max Density divided by Rock Name nad ROck Group. THe latter two impact the y-axis and the hbars and titles.
+        :return: DataFrame containing the Min/Max Poisson Ratio and the Min/Max Density divided by Rock Name nad ROck Group. The latter two impact the y-axis and the hbars and titles.
         :rtype: pandas.DataFrame
 
         """
@@ -355,7 +329,7 @@ class poisson_density():
         # Initialise DataFrame
         df = pd.DataFrame()
         # Read the data from the dictionary to a DataFrame
-        df = df.from_dict(self._poisson_density_range)
+        df = df.from_dict(rock_variables._poisson_density_range)
 
         # Group the data based on the Major Rock Type
         df = df.sort_values(by=['Group', 'Rock Type'])
@@ -430,6 +404,143 @@ class poisson_density():
         plt.legend().set_visible(False)
 
         return ax
+
+
+class strength_ratio:
+    """
+    Based on the classification of Tatone, B.S.A., Abdelaziz, A. & Grasselli, G. Novel Mechanical Classification Method of Rock Based on the Uniaxial Compressive Strength and Brazilian Disc Strength. Rock Mech Rock Eng 55, 2503–2507 (2022). https://doi.org/10.1007/s00603-021-02759-7
+    Data was built using a bivariant KDE
+    # https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html
+    # https://towardsdatascience.com/simple-example-of-2d-density-plots-in-python-83b83b934f67
+
+    # ADVANCED: By assigning the *_rocktype_dict* variable, more control over the clusters being plotted is gained.
+    """
+
+    # Dictionary to hold Rock Category
+
+    # Load default variables
+    _rocktype_dict = rock_variables._rocktype_dictionary
+
+
+    def initial_processing(self, rock_type_to_plot=None, plot_all_clusters=False, ucs_class_type=None, ax=None):
+        """
+        Main function to plot the Modulus Ratio underlay
+
+        :param rock_type_to_plot: Rock cluster type to plot.
+        :type rock_type_to_plot: UCS Strength Criteria adopted. Options Sedimentary, Igneous, Metamorphic.
+        :param ucs_class_type: UCS Strength Criteria adopted. Options 'ISRM\n1977', 'ISRMCAT\n1979', 'Bieniawski\n1974', 'Jennings\n1973', 'Broch & Franklin\n1972', 'Geological Society\n1970', 'Deere & Miller\n1966', 'Coates\n1964', 'Coates & Parsons\n1966', 'ISO 14689\n2017', 'Anon\n1977', 'Anon\n1979', 'Ramamurthy\n2004'
+        :type ucs_class_type: str
+        :param ax: Axis to plot on
+        :type ax: matplotlib
+
+        :return: Axis
+        :rtype: Matplotlib Axis
+        """
+
+        # Load the data Deere Miller digitized plots
+        df_of_clusters_tatone_et_al = modulus_ratio.load_data(self, "Digitized_tatone_et_al.csv")
+
+        # Indicate to user which curve is being plotted.
+        if rock_type_to_plot:
+            print("\tPlotting Modulus Ratio for %s Clusters" % formatting_codes.bold_text(rock_type_to_plot))
+        else:
+            print("\tPlotting Deere Miller for All Clusters")
+
+        # Initialise Plotting Axis
+        if ax is None:
+            ax = plt.gca()
+            self._xmin, self._xmax = 0.1, 50
+            self._ymin, self._ymax = 1, 500
+
+        modulus_ratio.deere_miller_clusters(self, ax, df_of_clusters_tatone_et_al, r_type=rock_type_to_plot,
+                                   plot_all_clusters_bool=plot_all_clusters)
+
+        # Load information for UCS Strength Criteria adopted
+        global category_names, category_values
+        if ucs_class_type:
+            category_names, category_values = ucs_descriptions.ucs_strength_criteria(ucs_class_type)
+            self.format_axis(ax, major_axis_vline=False)
+            modulus_ratio.plot_v_lines(self, category_values, ax)
+        else:
+            self.format_axis(ax, major_axis_vline=True)
+
+        return ax
+
+
+    def format_axis(self, ax, state='', major_axis_vline = True):
+        """
+        Format log-log Axis
+
+        :param ax: Axis to plot on
+        :type ax: matplotlib
+        :param state: state to enable to disable slopped lines
+        :type state:
+        :param major_axis_vline: Plot the major axis vlines
+        :type major_axis_vline: bool
+        :return:
+        :rtype:
+        """
+        # Draw axis limits
+        ax.set_xlim(self._xmin, self._xmax)
+        ax.set_ylim(self._ymin, self._ymax)
+        # Log-Log Scale
+        ax.loglog()
+        ax.grid(major_axis_vline, alpha=0.5, zorder=-1)
+        # Format the Number to XX format for X and Y axis
+        for axis in [ax.xaxis, ax.yaxis]:
+            formatter = FuncFormatter(lambda ax_lab, _: '{:.16g}'.format(ax_lab))
+            axis.set_major_formatter(formatter)
+
+
+        if not state:
+            # Draw Slopped line to presents different Areas
+            self.abline( 20 , 0, "line", 1, '', ax)  # Slope of Strength Ratio Low:Average MPa to GPa
+            self.abline( 8 , 0, "line", 1, '', ax)  # Slope of Strength Ratio Average:High MPa to GPa
+
+            # Text to Classify the MR domains
+            self.abline( 30 , 0, "text", 1, "High UCS:BDS Ratio",ax, )  # High SR
+            self.abline( math.sqrt(20 * 8), 0, "text",1, 'Average UCS:BDS Ratio', ax, )  # Average SR
+            self.abline( 5, 0, "text", 1, 'Low UCS:BDS Ratio',ax, )  # Low SR
+
+
+    def abline(self, slope, intercept, dr_state, multiplier=1, ratio='', ax=None):
+        """
+        Function to plot the slopped lines based on a slope and a y-intercept, basically mx+c. It is defined to form the Low/Avg/High MR ratio in the deere-miller classification plot.
+
+        :param slope: the slope of the line
+        :type slope: float
+        :param intercept: the intercept of the lube
+        :type intercept: float
+        :param dr_state: draw state to move between the line drawing and the placement/writing of the text. Options [Line, Text]
+        :type dr_state: str
+        :param multiplier: in case of a need of a multiplier
+        :type multiplier: int
+        :param ratio: text associated with the MR modulus
+        :type ratio: str
+        :param ax: Matplotlib Axis
+        :type ax: matplotlib
+        :param x_text_loc: slope to write text
+        :type x_text_loc: float
+
+        :return:
+        :rtype:
+        """
+
+        axes = plt.gca()  # Get axis limits
+        x_vals = np.array(axes.get_xlim())  # Array the X as values from xlim
+        y_vals = intercept + (slope / multiplier) * x_vals  # Get y values based on mx + c
+        x_text_loc = 0.2  # X-Location of text
+        txt_slope = np.rad2deg(np.arctan2(np.log(y_vals[-1]) - np.log(y_vals[0]), np.log(x_vals[-1]) - np.log(x_vals[0])))
+
+        if dr_state == "line":
+            ax.plot(x_vals, y_vals, color='grey', alpha=0.5, linestyle='--')
+            # Add the text to the sloped line
+            plt.text(x_text_loc, intercept + (slope / multiplier) * x_text_loc, '{:d}:1'.format(int(slope)),
+                     rotation=txt_slope, bbox=dict(facecolor='white', edgecolor="white"))
+        if dr_state == "text":
+            # Add the text to category
+            ax.text(x_text_loc, intercept + (slope / multiplier) * x_text_loc, ratio, rotation=txt_slope, alpha=0.5)
+
 
 '''
 MAIN MODULE

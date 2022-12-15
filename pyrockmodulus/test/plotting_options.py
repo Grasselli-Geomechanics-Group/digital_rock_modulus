@@ -30,12 +30,25 @@ import pyrockmodulus.ucs_descriptions as ucs_class
 print(ucs_class.ucs_strength_criteria('ISRMCAT\n1979'))
 
 '''
+EXAMPLE 06
+'''
+import pyrockmodulus
+import matplotlib.pyplot as plt
+
+xx = pyrockmodulus.strength_ratio()
+xx.initial_processing(plot_all_clusters=False, rock_type_to_plot='Sedimentary')
+plt.ylabel("BDS (MPa)")
+plt.xlabel("UCS (MPa)")
+plt.show()
+
+'''
 EXAMPLE 04
 '''
 import pyrockmodulus.ucs_bar_chart_plot as ucs_classification_plot
 import matplotlib.pyplot as plt
 ucs_class = ucs_classification_plot.initial_processing()
 plt.show()
+
 
 '''
 EXAMPLE 05

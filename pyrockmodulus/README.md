@@ -53,6 +53,26 @@ plt.show()
 ```
  ![](images/example_withdata.png)
 
+## pyrockmodulus.strength_ratio()
+
+Loads the constructed Tatone et al. UCS:BDS clusters and plots them based on the Major Rock Type *(i.e., Igneous / Metamorphic / Sedimentary)*.
+- Plot all Major Rock Type in one graph.
+- Plots them individually.
+
+The functionality is similar to that of the modulus ratio. 
+
+```python
+import pyrockmodulus
+import matplotlib.pyplot as plt
+
+xx = pyrockmodulus.strength_ratio()
+xx.initial_processing(plot_all_clusters=False, rock_type_to_plot='Sedimentary')
+plt.ylabel("BDS (MPa)")
+plt.xlabel("UCS (MPa)")
+plt.show()
+```
+![](images/example06.png)
+
 ## pyrockmodulus.poisson_density()
 
 Plot the most common ranges of density and poisson's ratio for rock. This data can then be overlaid with data from a specific source to show comparison. 
