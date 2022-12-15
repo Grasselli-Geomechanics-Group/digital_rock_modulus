@@ -7,15 +7,11 @@ from matplotlib.ticker import FuncFormatter
 import time
 import math
 
-# Load UCS Strength Criterion py file
-try:
-    from . import ucs_descriptions
-except ImportError:
-    import ucs_descriptions
 try:
     from . import formatting_codes
 except ImportError:
     import formatting_codes
+# Load UCS Strength Criterion py file
 try:
     from . import rock_variables
 except ImportError:
@@ -303,7 +299,7 @@ class modulus_ratio:
         # Load information for UCS Strength Criteria adopted
         global category_names, category_values
         if ucs_class_type:
-            category_names, category_values = ucs_descriptions.ucs_strength_criteria(ucs_class_type)
+            category_names, category_values = rock_variables.ucs_strength_criteria(ucs_class_type)
             self.format_axis(ax, major_axis_vline=False)
             self.plot_v_lines(category_values, ax)
         else:
@@ -458,7 +454,7 @@ class strength_ratio:
         # Load information for UCS Strength Criteria adopted
         global category_names, category_values
         if ucs_class_type:
-            category_names, category_values = ucs_descriptions.ucs_strength_criteria(ucs_class_type)
+            category_names, category_values = rock_variables.ucs_strength_criteria(ucs_class_type)
             self.format_axis(ax, major_axis_vline=False)
             modulus_ratio.plot_v_lines(self, category_values, ax)
         else:

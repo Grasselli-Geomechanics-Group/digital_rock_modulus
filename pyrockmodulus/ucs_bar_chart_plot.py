@@ -14,9 +14,9 @@ import math
 
 # Load UCS Strength Criterion py file
 try:
-    from . import ucs_descriptions
+    from . import rock_variables
 except ImportError:
-    import ucs_descriptions
+    import rock_variables
 
 # Load UCS Strength Criterion py file
 try:
@@ -57,7 +57,7 @@ def initial_processing():
     fig, ax = plt.subplots()
 
     # Load All UCS Strength criteria by passing '' as type
-    category_names, category_values, converted_psi = ucs_descriptions.ucs_strength_criteria('')
+    category_names, category_values, converted_psi = rock_variables.ucs_strength_criteria('')
 
     print("A total of %s UCS Strength criteria identified." % formatting_codes.bold_text(len(category_names.keys())))
 
