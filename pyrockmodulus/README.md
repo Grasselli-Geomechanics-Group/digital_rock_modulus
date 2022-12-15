@@ -98,7 +98,7 @@ Avaliable classificatin systems 'ISRM\n1977', 'ISRMCAT\n1979', 'Bieniawski\n1974
 
 1. Display the limits and the classification system default in the script. 
 ```python
-import pyrockmodulus.ucs_descriptions as ucs_class
+import pyrockmodulus.rock_variables as ucs_class
 ucs_class.ucs_strength_criteria('ISRMCAT\n1979')
 ```
 Output

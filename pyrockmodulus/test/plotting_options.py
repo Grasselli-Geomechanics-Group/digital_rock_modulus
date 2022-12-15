@@ -26,7 +26,7 @@ plt.show()
 '''
 EXAMPLE 03
 '''
-import pyrockmodulus.ucs_descriptions as ucs_class
+import pyrockmodulus.rock_variables as ucs_class
 print(ucs_class.ucs_strength_criteria('ISRMCAT\n1979'))
 
 '''

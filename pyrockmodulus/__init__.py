@@ -35,7 +35,6 @@ from .pyrockmodulus import (
 
 # Load sub-routine modules py files
 from . import (
-    ucs_descriptions,
     formatting_codes,
     rock_variables,
 )
