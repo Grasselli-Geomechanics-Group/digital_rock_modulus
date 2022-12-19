@@ -431,6 +431,7 @@ class strength_ratio:
 
         :return: Axis
         :rtype: Matplotlib Axis
+
         """
 
         # Load the data Deere Miller digitized plots

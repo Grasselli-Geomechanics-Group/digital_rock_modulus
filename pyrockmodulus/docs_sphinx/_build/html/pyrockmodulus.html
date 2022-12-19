@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyrockmodulus package &mdash; Digital plots of Modulus and Strength ratio for Rocks 0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="pyfdempp" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Digital plots of Modulus and Strength ratio for Rocks
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="postprocessing_intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyfdempp</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pyrockmodulus package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-pyrockmodulus.pyrockmodulus">Deere-Miller - Modulus Ratio (MR)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-0">Tatone et al. - Strength Ratio (SR)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-1">Poisson’s Ratio and Density Plots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-pyrockmodulus.rock_variables">UCS Classification Systems</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#supporting-modules">Supporting Modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-pyrockmodulus.formatting_codes">pyrockmodulus.formatting_codes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-pyrockmodulus.ucs_bar_chart_plot">pyrockmodulus.ucs_bar_chart_plot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Digital plots of Modulus and Strength ratio for Rocks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">pyfdempp</a></li>
+      <li class="breadcrumb-item active">pyrockmodulus package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pyrockmodulus.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pyrockmodulus-package">
+<h1>pyrockmodulus package<a class="headerlink" href="#pyrockmodulus-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+<section id="module-pyrockmodulus.pyrockmodulus">
+<span id="deere-miller-modulus-ratio-mr"></span><h3>Deere-Miller - Modulus Ratio (MR)<a class="headerlink" href="#module-pyrockmodulus.pyrockmodulus" title="Permalink to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.modulus_ratio">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrockmodulus.pyrockmodulus.</span></span><span class="sig-name descname"><span class="pre">modulus_ratio</span></span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.modulus_ratio" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Based on the classification of Deere DU, Miller RP. Engineering Classification and Index Properties for Intact Rocks. Fort Belvoir, VA: Defense Technical Information Center; 1966.
+Data digitization courtesy of Rohatgi, Ankit. “WebPlotDigitizer.” (2017).</p>
+<p># ADVANCED: By assigning the <em>_rocktype_dictionary</em> variable, more control over the clusters being plotted is gained.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.modulus_ratio.abline">
+<span class="sig-name descname"><span class="pre">abline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slope</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intercept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dr_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multiplier</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_text_loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.15</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.modulus_ratio.abline" title="Permalink to this definition"></a></dt>
+<dd><p>Function to plot the slopped lines based on a slope and a y-intercept, basically mx+c. It is defined to form the Low/Avg/High MR ratio in the deere-miller classification plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>slope</strong> (<em>float</em>) – the slope of the line</p></li>
+<li><p><strong>intercept</strong> (<em>float</em>) – the intercept of the lube</p></li>
+<li><p><strong>dr_state</strong> (<em>str</em>) – draw state to move between the line drawing and the placement/writing of the text. Options [Line, Text]</p></li>
+<li><p><strong>multiplier</strong> (<em>int</em>) – in case of a need of a multiplier</p></li>
+<li><p><strong>ratio</strong> (<em>str</em>) – text associated with the MR modulus</p></li>
+<li><p><strong>ax</strong> (<em>matplotlib</em>) – Matplotlib Axis</p></li>
+<li><p><strong>x_text_loc</strong> (<em>float</em>) – slope to write text</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.modulus_ratio.deere_miller_clusters">
+<span class="sig-name descname"><span class="pre">deere_miller_clusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_of_clusters_deere_miller</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_all_clusters_bool</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.modulus_ratio.deere_miller_clusters" title="Permalink to this definition"></a></dt>
+<dd><p>Load information needed to plot</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> (<em>matplotlib</em>) – Axis to plot on</p></li>
+<li><p><strong>df_of_clusters_deere_miller</strong> (<em>dict</em>) – will plot defined cluster. Options Sedimentary, Igneous, Metamorphic.</p></li>
+<li><p><strong>r_type</strong> (<em>str</em>) – Define the rock type to be plotted. plot_all_clusters_bool MUST be false.</p></li>
+<li><p><strong>plot_all_clusters_bool</strong> (<em>bool</em>) – Plot all the clusters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.modulus_ratio.format_axis">
+<span class="sig-name descname"><span class="pre">format_axis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">major_axis_vline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.modulus_ratio.format_axis" title="Permalink to this definition"></a></dt>
+<dd><p>Format log-log Axis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> (<em>matplotlib</em>) – Axis to plot on</p></li>
+<li><p><strong>state</strong> – state to enable to disable slopped lines</p></li>
+<li><p><strong>major_axis_vline</strong> (<em>bool</em>) – Plot the major axis vlines</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.modulus_ratio.initial_processing">
+<span class="sig-name descname"><span class="pre">initial_processing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rock_type_to_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_all_clusters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ucs_class_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.modulus_ratio.initial_processing" title="Permalink to this definition"></a></dt>
+<dd><blockquote>
+<div><p>Main function to plot the Modulus Ratio underlay</p>
+<dl class="field-list simple">
+<dt class="field-odd">param rock_type_to_plot<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Rock cluster type to plot.</p>
+</dd>
+<dt class="field-even">type rock_type_to_plot<span class="colon">:</span></dt>
+<dd class="field-even"><p>UCS Strength Criteria adopted. Options Sedimentary, Igneous, Metamorphic.</p>
+</dd>
+<dt class="field-odd">param ucs_class_type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UCS Strength Criteria adopted. Options ‘ISRM</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>1977’, ‘ISRMCAT
+1979’, ‘Bieniawski
+1974’, ‘Jennings
+1973’, ‘Broch &amp; Franklin
+1972’, ‘Geological Society
+1970’, ‘Deere &amp; Miller
+1966’, ‘Coates
+1964’, ‘Coates &amp; Parsons
+1966’, ‘ISO 14689
+2017’, ‘Anon
+1977’, ‘Anon
+1979’, ‘Ramamurthy
+2004’</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">type ucs_class_type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">param ax<span class="colon">:</span></dt>
+<dd class="field-even"><p>Axis to plot on</p>
+</dd>
+<dt class="field-odd">type ax<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matplotlib</p>
+</dd>
+<dt class="field-even">return<span class="colon">:</span></dt>
+<dd class="field-even"><p>Axis</p>
+</dd>
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matplotlib Axis</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.modulus_ratio.load_data">
+<span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_deere_miller_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.modulus_ratio.load_data" title="Permalink to this definition"></a></dt>
+<dd><p>Load the file that holds the digital deere_miller cluster points. This information will be used to plot the deere-miller clusters based on the user requirements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df_deere_miller_data</strong> (<em>str</em>) – file path to the location of the csv</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary containing the type of rock and the points that form its cluster.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.modulus_ratio.plot_clusters">
+<span class="sig-name descname"><span class="pre">plot_clusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_of_clusters_deere_miller</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.modulus_ratio.plot_clusters" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the clusters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> (<em>str</em>) – key</p></li>
+<li><p><strong>v</strong> (<em>str</em>) – value</p></li>
+<li><p><strong>ax</strong> (<em>matplotlib</em>) – Axis to plot on</p></li>
+<li><p><strong>df_of_clusters_deere_miller</strong> (<em>dict</em>) – dictionary containing the type of rock and the points that form its cluster.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.modulus_ratio.plot_v_lines">
+<span class="sig-name descname"><span class="pre">plot_v_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.modulus_ratio.plot_v_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Plot lines and annotate the UCS Strength Criteria adopted</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vlines</strong> (<em>list</em><em>[</em><em>float</em><em>]</em>) – Locations of V Lines</p></li>
+<li><p><strong>ax</strong> (<em>matplotlib</em>) – Axis to plot</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-0">
+<span id="tatone-et-al-strength-ratio-sr"></span><h3>Tatone et al. - Strength Ratio (SR)<a class="headerlink" href="#module-0" title="Permalink to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.strength_ratio">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrockmodulus.pyrockmodulus.</span></span><span class="sig-name descname"><span class="pre">strength_ratio</span></span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.strength_ratio" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Based on the classification of Tatone, B.S.A., Abdelaziz, A. &amp; Grasselli, G. Novel Mechanical Classification Method of Rock Based on the Uniaxial Compressive Strength and Brazilian Disc Strength. Rock Mech Rock Eng 55, 2503–2507 (2022). <a class="reference external" href="https://doi.org/10.1007/s00603-021-02759-7">https://doi.org/10.1007/s00603-021-02759-7</a>
+Data was built using a bivariant KDE
+# <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html</a>
+# <a class="reference external" href="https://towardsdatascience.com/simple-example-of-2d-density-plots-in-python-83b83b934f67">https://towardsdatascience.com/simple-example-of-2d-density-plots-in-python-83b83b934f67</a></p>
+<p># ADVANCED: By assigning the <em>_rocktype_dict</em> variable, more control over the clusters being plotted is gained.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.strength_ratio.abline">
+<span class="sig-name descname"><span class="pre">abline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slope</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intercept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dr_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multiplier</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.strength_ratio.abline" title="Permalink to this definition"></a></dt>
+<dd><p>Function to plot the slopped lines based on a slope and a y-intercept, basically mx+c. It is defined to form the Low/Avg/High MR ratio in the deere-miller classification plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>slope</strong> (<em>float</em>) – the slope of the line</p></li>
+<li><p><strong>intercept</strong> (<em>float</em>) – the intercept of the lube</p></li>
+<li><p><strong>dr_state</strong> (<em>str</em>) – draw state to move between the line drawing and the placement/writing of the text. Options [Line, Text]</p></li>
+<li><p><strong>multiplier</strong> (<em>int</em>) – in case of a need of a multiplier</p></li>
+<li><p><strong>ratio</strong> (<em>str</em>) – text associated with the MR modulus</p></li>
+<li><p><strong>ax</strong> (<em>matplotlib</em>) – Matplotlib Axis</p></li>
+<li><p><strong>x_text_loc</strong> (<em>float</em>) – slope to write text</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.strength_ratio.format_axis">
+<span class="sig-name descname"><span class="pre">format_axis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">major_axis_vline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.strength_ratio.format_axis" title="Permalink to this definition"></a></dt>
+<dd><p>Format log-log Axis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> (<em>matplotlib</em>) – Axis to plot on</p></li>
+<li><p><strong>state</strong> – state to enable to disable slopped lines</p></li>
+<li><p><strong>major_axis_vline</strong> (<em>bool</em>) – Plot the major axis vlines</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.strength_ratio.initial_processing">
+<span class="sig-name descname"><span class="pre">initial_processing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rock_type_to_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_all_clusters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ucs_class_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.strength_ratio.initial_processing" title="Permalink to this definition"></a></dt>
+<dd><blockquote>
+<div><p>Main function to plot the Modulus Ratio underlay</p>
+<dl class="field-list simple">
+<dt class="field-odd">param rock_type_to_plot<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Rock cluster type to plot.</p>
+</dd>
+<dt class="field-even">type rock_type_to_plot<span class="colon">:</span></dt>
+<dd class="field-even"><p>UCS Strength Criteria adopted. Options Sedimentary, Igneous, Metamorphic.</p>
+</dd>
+<dt class="field-odd">param ucs_class_type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UCS Strength Criteria adopted. Options ‘ISRM</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>1977’, ‘ISRMCAT
+1979’, ‘Bieniawski
+1974’, ‘Jennings
+1973’, ‘Broch &amp; Franklin
+1972’, ‘Geological Society
+1970’, ‘Deere &amp; Miller
+1966’, ‘Coates
+1964’, ‘Coates &amp; Parsons
+1966’, ‘ISO 14689
+2017’, ‘Anon
+1977’, ‘Anon
+1979’, ‘Ramamurthy
+2004’</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">type ucs_class_type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">param ax<span class="colon">:</span></dt>
+<dd class="field-even"><p>Axis to plot on</p>
+</dd>
+<dt class="field-odd">type ax<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matplotlib</p>
+</dd>
+<dt class="field-even">return<span class="colon">:</span></dt>
+<dd class="field-even"><p>Axis</p>
+</dd>
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matplotlib Axis</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-1">
+<span id="poisson-s-ratio-and-density-plots"></span><h3>Poisson’s Ratio and Density Plots<a class="headerlink" href="#module-1" title="Permalink to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.poisson_density">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrockmodulus.pyrockmodulus.</span></span><span class="sig-name descname"><span class="pre">poisson_density</span></span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.poisson_density" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Load Poisson Ratio and Density information</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.poisson_density.initial_processing">
+<span class="sig-name descname"><span class="pre">initial_processing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.poisson_density.initial_processing" title="Permalink to this definition"></a></dt>
+<dd><p>Load the variables and initialise the dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame containing the Min/Max Poisson Ratio and the Min/Max Density divided by Rock Name nad ROck Group. The latter two impact the y-axis and the hbars and titles.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.poisson_density.plot_span_chart">
+<span class="sig-name descname"><span class="pre">plot_span_chart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_to_plot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_span</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_units</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.poisson_density.plot_span_chart" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a chart divided by the rock type and rock group.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df_to_plot</strong> (<em>pandas.DataFrame</em>) – Panda Dataframe to plot</p></li>
+<li><p><strong>variable_span</strong> (<em>list</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – Span (i.e., min and max values) passed as a list. Must be the Column Header name in the DataFrame!</p></li>
+<li><p><strong>variable_label</strong> (<em>str</em>) – Variable Name. X axis label</p></li>
+<li><p><strong>variable_units</strong> (<em>str</em>) – Variable Units. X axis label unit</p></li>
+<li><p><strong>ax</strong> (<em>Matplolib</em>) – Matplotlib Axis to plot On</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Matplotlib AxesSubplots</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matplotlib Axis</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyrockmodulus.rock_variables">
+<span id="ucs-classification-systems"></span><h3>UCS Classification Systems<a class="headerlink" href="#module-pyrockmodulus.rock_variables" title="Permalink to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyrockmodulus.rock_variables.ucs_strength_criteria">
+<span class="sig-prename descclassname"><span class="pre">pyrockmodulus.rock_variables.</span></span><span class="sig-name descname"><span class="pre">ucs_strength_criteria</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.rock_variables.ucs_strength_criteria" title="Permalink to this definition"></a></dt>
+<dd><p>## Insert all UCS Strength Criterion Here.     ## ALL VALUES ARE IN MPa
+# Name Format {Reference Name: [Name of Category]}
+# Value Format {Reference Name: [Boundaries Location]}  &lt;=&gt; in MPa
+# converted_psi [Reference name that are converted from psi to MPa]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>type</strong> (<em>str</em>) – rock classification system to load</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="supporting-modules">
+<h2>Supporting Modules<a class="headerlink" href="#supporting-modules" title="Permalink to this heading"></a></h2>
+<section id="module-pyrockmodulus.formatting_codes">
+<span id="pyrockmodulus-formatting-codes"></span><h3>pyrockmodulus.formatting_codes<a class="headerlink" href="#module-pyrockmodulus.formatting_codes" title="Permalink to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyrockmodulus.formatting_codes.bold_text">
+<span class="sig-prename descclassname"><span class="pre">pyrockmodulus.formatting_codes.</span></span><span class="sig-name descname"><span class="pre">bold_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.formatting_codes.bold_text" title="Permalink to this definition"></a></dt>
+<dd><p>Returns text as bold</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<em>str</em>) – Text</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Text as bold</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyrockmodulus.formatting_codes.calc_timer_values">
+<span class="sig-prename descclassname"><span class="pre">pyrockmodulus.formatting_codes.</span></span><span class="sig-name descname"><span class="pre">calc_timer_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">end_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.formatting_codes.calc_timer_values" title="Permalink to this definition"></a></dt>
+<dd><p>Function to calculate the time</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>end_time</strong> (<em>float</em>) – Time (Difference in time in seconds)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Time in minutes and seconds</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyrockmodulus.formatting_codes.docstring_creator">
+<span class="sig-prename descclassname"><span class="pre">pyrockmodulus.formatting_codes.</span></span><span class="sig-name descname"><span class="pre">docstring_creator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.formatting_codes.docstring_creator" title="Permalink to this definition"></a></dt>
+<dd><p>Write the example output for a docstring DataFrame</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pandas.DataFrame</em>) – DataFrame to be read</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>prints the docstring and type for each element in the DataFrame</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyrockmodulus.formatting_codes.green_text">
+<span class="sig-prename descclassname"><span class="pre">pyrockmodulus.formatting_codes.</span></span><span class="sig-name descname"><span class="pre">green_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.formatting_codes.green_text" title="Permalink to this definition"></a></dt>
+<dd><p>Returns text as bold in green font color</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<em>str</em>) – Text</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Text as bold in green font color</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyrockmodulus.formatting_codes.print_progress">
+<span class="sig-prename descclassname"><span class="pre">pyrockmodulus.formatting_codes.</span></span><span class="sig-name descname"><span class="pre">print_progress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iteration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decimals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bar_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.formatting_codes.print_progress" title="Permalink to this definition"></a></dt>
+<dd><p>Call in a loop to create terminal progress bar
+Adjusted bar length to 50, to display on small screen</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iteration</strong> (<em>int</em>) – current iteration</p></li>
+<li><p><strong>total</strong> (<em>int</em>) – total iteration</p></li>
+<li><p><strong>prefix</strong> (<em>str</em>) – prefix string</p></li>
+<li><p><strong>suffix</strong> (<em>str</em>) – suffix string</p></li>
+<li><p><strong>decimals</strong> (<em>int</em>) – positive number of decimals in percent complete</p></li>
+<li><p><strong>bar_length</strong> (<em>int</em>) – character length of bar</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>system output showing progress</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyrockmodulus.formatting_codes.red_text">
+<span class="sig-prename descclassname"><span class="pre">pyrockmodulus.formatting_codes.</span></span><span class="sig-name descname"><span class="pre">red_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.formatting_codes.red_text" title="Permalink to this definition"></a></dt>
+<dd><p>Returns text as bold in red font color</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<em>str</em>) – Text</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Text as bold in red font color</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pyrockmodulus.ucs_bar_chart_plot">
+<span id="pyrockmodulus-ucs-bar-chart-plot"></span><h3>pyrockmodulus.ucs_bar_chart_plot<a class="headerlink" href="#module-pyrockmodulus.ucs_bar_chart_plot" title="Permalink to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyrockmodulus.ucs_bar_chart_plot.initial_processing">
+<span class="sig-prename descclassname"><span class="pre">pyrockmodulus.ucs_bar_chart_plot.</span></span><span class="sig-name descname"><span class="pre">initial_processing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.ucs_bar_chart_plot.initial_processing" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="pyrockmodulus.ucs_bar_chart_plot.my_path">
+<span class="sig-prename descclassname"><span class="pre">pyrockmodulus.ucs_bar_chart_plot.</span></span><span class="sig-name descname"><span class="pre">my_path</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/hdd/home/aly/Desktop/Dropbox/Python_Codes/digital_modulus_strength_ratio/pyrockmodulus'</span></em><a class="headerlink" href="#pyrockmodulus.ucs_bar_chart_plot.my_path" title="Permalink to this definition"></a></dt>
+<dd><p>Default MATPLOTLIB Fonts</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="pyfdempp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

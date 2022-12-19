@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; Digital plots of Modulus and Strength ratio for Rocks 0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pyfdempp" href="modules.html" />
+    <link rel="prev" title="Welcome to the MR and SR digital library documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Digital plots of Modulus and Strength ratio for Rocks
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#deere-miller-modulus-ratio-mr">Deere-Miller - Modulus Ratio (MR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tatone-et-al-strength-ratio-sr">Tatone et al. - Strength Ratio (SR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#poisson-s-ratio-and-density-plots">Poisson’s Ratio and Density Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ucs-classification-systems">UCS Classification Systems</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pyfdempp</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Digital plots of Modulus and Strength ratio for Rocks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/postprocessing_intro.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h1>
+<p>Makes it easier to classify the Deere-Miller - Modulus Ratio [MR] and Tatone et al. - Strength Ratio [SR].</p>
+<p>For any suggestions, bugs or if you wish to contribute to the project =&gt; <a class="reference external" href="https://github.com/alicarlos/digital_modulus_strength_ratio">REPO</a></p>
+<section id="deere-miller-modulus-ratio-mr">
+<h2>Deere-Miller - Modulus Ratio (MR)<a class="headerlink" href="#deere-miller-modulus-ratio-mr" title="Permalink to this heading"></a></h2>
+<p><em>Cite: Deere DU, Miller RP. Engineering Classification and Index Properties for Intact Rocks. Fort Belvoir, VA: Defense Technical Information Center; 1966.</em></p>
+<p>Loads the digitized Deere_Miller clusters and plots them based on the Major Rock Type <em>(i.e., Igneous / Metamorphic / Sedimentary)</em>.</p>
+<ul class="simple">
+<li><p>Plot all Major Rock Type in one graph.</p></li>
+<li><p>Plots them individually.</p></li>
+</ul>
+<p><strong>Deere-Miller [Modulus Ratio] Example</strong></p>
+<ol class="arabic simple">
+<li><p>Plot the Modulus Ratio of just the Sedimentary clusters with the ISRM 1979 category classification.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyrockmodulus</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">xx</span> <span class="o">=</span> <span class="n">pyrockmodulus</span><span class="o">.</span><span class="n">modulus_ratio</span><span class="p">()</span>
+<span class="n">xx</span><span class="o">.</span><span class="n">initial_processing</span><span class="p">(</span><span class="n">plot_all_clusters</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rock_type_to_plot</span><span class="o">=</span><span class="s1">&#39;Sedimentary&#39;</span><span class="p">,</span> <span class="n">ucs_class_type</span><span class="o">=</span><span class="s2">&quot;ISRMCAT</span><span class="se">\n</span><span class="s2">1979&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;E (GPa)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;UCS (MPa)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/example01.png" /></p>
+<ol class="arabic simple" start="2">
+<li><p>Plot the Modulus Ratio with all the categories without the classification. Legend enabled.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyrockmodulus</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">xx</span> <span class="o">=</span> <span class="n">pyrockmodulus</span><span class="o">.</span><span class="n">modulus_ratio</span><span class="p">()</span>
+<span class="n">xx</span><span class="o">.</span><span class="n">initial_processing</span><span class="p">(</span><span class="n">plot_all_clusters</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;E (GPa)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;UCS (MPa)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/example02.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>Plot the Modulus Ratio of just the Sedimentary clusters overlaid with data from tests.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyrockmodulus</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># Data Set</span>
+<span class="n">ucs_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">75.33</span><span class="p">,</span> <span class="mf">99.03</span><span class="p">,</span> <span class="mf">111.69</span><span class="p">,</span> <span class="mf">30.17</span><span class="p">,</span> <span class="mf">73.76</span><span class="p">,</span> <span class="mf">41.69</span><span class="p">,</span> <span class="mf">42.09</span><span class="p">,</span> <span class="mf">60.99</span><span class="p">,</span> <span class="mf">39.65</span><span class="p">,</span> <span class="mf">94.52</span><span class="p">,</span> <span class="mf">104.6</span><span class="p">,</span> <span class="mf">102.03</span><span class="p">]</span>
+<span class="n">E_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">18.31</span><span class="p">,</span> <span class="mf">21.85</span><span class="p">,</span> <span class="mf">20.51</span><span class="p">,</span> <span class="mf">8.62</span><span class="p">,</span> <span class="mf">25.72</span><span class="p">,</span> <span class="mf">18.68</span><span class="p">,</span> <span class="mf">9.2</span><span class="p">,</span> <span class="mf">14.67</span><span class="p">,</span> <span class="mf">7.38</span><span class="p">,</span> <span class="mf">8.48</span><span class="p">,</span> <span class="mf">8.7</span><span class="p">,</span> <span class="mf">8.82</span><span class="p">]</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">pyrockmodulus</span><span class="o">.</span><span class="n">modulus_ratio</span><span class="p">()</span>
+<span class="n">plotting_axis</span> <span class="o">=</span> <span class="n">xx</span><span class="o">.</span><span class="n">initial_processing</span><span class="p">(</span><span class="n">rock_type_to_plot</span><span class="o">=</span><span class="s1">&#39;Sedimentary&#39;</span><span class="p">)</span>
+<span class="c1"># Plot the data on the Deere-Miller axis</span>
+<span class="n">plotting_axis</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ucs_data</span><span class="p">,</span> <span class="n">E_data</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test Results&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;E (GPa)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;UCS (MPa)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/example_withdata.png" /></p>
+</section>
+<section id="tatone-et-al-strength-ratio-sr">
+<h2>Tatone et al. - Strength Ratio (SR)<a class="headerlink" href="#tatone-et-al-strength-ratio-sr" title="Permalink to this heading"></a></h2>
+<p><em>Tatone, B.S.A., Abdelaziz, A. &amp; Grasselli, G. Novel Mechanical Classification Method of Rock Based on the Uniaxial Compressive Strength and Brazilian Disc Strength. Rock Mech Rock Eng 55, 2503–2507 (2022). https://doi.org/10.1007/s00603-021-02759-7</em></p>
+<p>Loads the constructed Tatone et al. UCS:BDS clusters and plots them based on the Major Rock Type <em>(i.e., Igneous / Metamorphic / Sedimentary)</em>.</p>
+<ul class="simple">
+<li><p>Plot all Major Rock Type in one graph.</p></li>
+<li><p>Plots them individually.</p></li>
+</ul>
+<p>The functionality is similar to that of the modulus ratio.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyrockmodulus</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">xx</span> <span class="o">=</span> <span class="n">pyrockmodulus</span><span class="o">.</span><span class="n">strength_ratio</span><span class="p">()</span>
+<span class="n">xx</span><span class="o">.</span><span class="n">initial_processing</span><span class="p">(</span><span class="n">plot_all_clusters</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rock_type_to_plot</span><span class="o">=</span><span class="s1">&#39;Sedimentary&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;BDS (MPa)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;UCS (MPa)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/example06.png" /></p>
+</section>
+<section id="poisson-s-ratio-and-density-plots">
+<h2>Poisson’s Ratio and Density Plots<a class="headerlink" href="#poisson-s-ratio-and-density-plots" title="Permalink to this heading"></a></h2>
+<p>Plot the most common ranges of density and poisson’s ratio for rock. This data can then be overlaid with data from a specific source to show comparison.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pyrockmodulus</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">pyrockmodulus</span><span class="o">.</span><span class="n">poisson_density</span><span class="p">()</span>
+<span class="n">df_data</span> <span class="o">=</span> <span class="n">xx</span><span class="o">.</span><span class="n">initial_processing</span><span class="p">()</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">xx</span><span class="o">.</span><span class="n">plot_span_chart</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Min_D&#39;</span><span class="p">,</span> <span class="s1">&#39;Max_D&#39;</span><span class="p">],</span> <span class="s1">&#39;Density&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\rho$ g/cm$^</span><span class="si">{3}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/example_PR_DEN.png" /></p>
+</section>
+<section id="ucs-classification-systems">
+<h2>UCS Classification Systems<a class="headerlink" href="#ucs-classification-systems" title="Permalink to this heading"></a></h2>
+<p>This file holds the dictionaries for the various UCS classification systems available. References for those systems are within the file. All values <strong>must</strong> be in <strong>MPa</strong>.
+Available classification systems <em>‘ISRM\n1977’, ‘ISRMCAT\n1979’, ‘Bieniawski\n1974’, ‘Jennings\n1973’, ‘Broch &amp; Franklin\n1972’, ‘Geological Society\n1970’, ‘Deere &amp; Miller\n1966’, ‘Coates\n1964’, ‘Coates &amp; Parsons\n1966’, ‘ISO 14689\n2017’, ‘Anon\n1977’, ‘Anon\n1979’, ‘Ramamurthy\n2004’</em></p>
+<p><strong>UCS Classification System Examples</strong></p>
+<ol class="arabic simple">
+<li><p>Display the limits and the classification system default in the script.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyrockmodulus.rock_variables</span> <span class="k">as</span> <span class="nn">ucs_class</span>
+<span class="n">ucs_class</span><span class="o">.</span><span class="n">ucs_strength_criteria</span><span class="p">(</span><span class="s1">&#39;ISRMCAT</span><span class="se">\n</span><span class="s1">1979&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">([</span><span class="s1">&#39;R0&#39;</span><span class="p">,</span> <span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="s1">&#39;R2&#39;</span><span class="p">,</span> <span class="s1">&#39;R3&#39;</span><span class="p">,</span> <span class="s1">&#39;R4&#39;</span><span class="p">,</span> <span class="s1">&#39;R5&#39;</span><span class="p">,</span> <span class="s1">&#39;R6&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">1000</span><span class="p">])</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>A horizontal bar like plot to show the various uniaxial strength classification systems.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyrockmodulus.ucs_bar_chart_plot</span> <span class="k">as</span> <span class="nn">ucs_classification_plot</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">ucs_class</span> <span class="o">=</span> <span class="n">ucs_classification_plot</span><span class="o">.</span><span class="n">initial_processing</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/example04.png" /></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to the MR and SR digital library documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="pyfdempp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
