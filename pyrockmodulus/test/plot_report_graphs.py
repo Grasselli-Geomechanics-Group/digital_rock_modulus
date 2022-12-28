@@ -15,7 +15,7 @@ import math
 import os
 
 # plt.rcParams['figure.constrained_layout.use'] = True
-# plt.rcParams["figure.figsize"] = [6, 6]
+plt.rcParams["figure.figsize"] = [6, 6]
 plt.rcParams["date.autoformatter.minute"] = "%H:%M:%S"
 matplotlib.rcParams["mathtext.fontset"] = 'dejavuserif'
 matplotlib.rcParams['font.family'] = ['Times New Roman']
