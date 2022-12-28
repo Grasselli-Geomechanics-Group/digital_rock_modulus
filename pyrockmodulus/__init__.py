@@ -9,14 +9,13 @@ import sys
 
 '''
 VERIFICATION CODE BLOCK
-    - Verifies x64 Architecture
     - Check Python compatibility
     - Display system information
 '''
 
 __version__ = "0.1"
-if platform.architecture()[0] != "64bit":
-    exit("Compatible only on x64")
+# if platform.architecture()[0] != "64bit":
+#     exit("Compatible only on x64")
 
 # Check python compatibility before proceeding
 try:
@@ -24,7 +23,6 @@ try:
     print("Python Version: %s" % sys.version.split('\n')[0])
 except AssertionError:
     print("Python Version: %s" % sys.version.split('\n')[0])
-    exit("Compatible Python Version 3.5+")
 
 # Load Classes
 from .pyrockmodulus import (

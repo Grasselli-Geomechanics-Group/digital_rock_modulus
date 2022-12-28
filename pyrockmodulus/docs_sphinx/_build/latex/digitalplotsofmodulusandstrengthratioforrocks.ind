@@ -1,0 +1,100 @@
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
+
+  \bigletter A
+  \item \spxentry{abline()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}, 
+		\hyperpage{9}
+  \item \spxentry{abline()}\spxextra{pyrockmodulus.pyrockmodulus.strength\_ratio method}, 
+		\hyperpage{11}
+
+  \indexspace
+  \bigletter B
+  \item \spxentry{bold\_text()}\spxextra{in module pyrockmodulus.formatting\_codes}, \hyperpage{14}
+
+  \indexspace
+  \bigletter C
+  \item \spxentry{calc\_timer\_values()}\spxextra{in module pyrockmodulus.formatting\_codes}, 
+		\hyperpage{14}
+
+  \indexspace
+  \bigletter D
+  \item \spxentry{deere\_miller\_clusters()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}, 
+		\hyperpage{9}
+  \item \spxentry{docstring\_creator()}\spxextra{in module pyrockmodulus.formatting\_codes}, 
+		\hyperpage{14}
+
+  \indexspace
+  \bigletter F
+  \item \spxentry{format\_axis()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}, 
+		\hyperpage{10}
+  \item \spxentry{format\_axis()}\spxextra{pyrockmodulus.pyrockmodulus.strength\_ratio method}, 
+		\hyperpage{12}
+
+  \indexspace
+  \bigletter G
+  \item \spxentry{green\_text()}\spxextra{in module pyrockmodulus.formatting\_codes}, 
+		\hyperpage{14}
+
+  \indexspace
+  \bigletter I
+  \item \spxentry{initial\_processing()}\spxextra{in module pyrockmodulus.ucs\_bar\_chart\_plot}, 
+		\hyperpage{15}
+  \item \spxentry{initial\_processing()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}, 
+		\hyperpage{10}
+  \item \spxentry{initial\_processing()}\spxextra{pyrockmodulus.pyrockmodulus.poisson\_density method}, 
+		\hyperpage{13}
+  \item \spxentry{initial\_processing()}\spxextra{pyrockmodulus.pyrockmodulus.strength\_ratio method}, 
+		\hyperpage{12}
+
+  \indexspace
+  \bigletter L
+  \item \spxentry{load\_data()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}, 
+		\hyperpage{10}
+
+  \indexspace
+  \bigletter M
+  \item \spxentry{module}
+    \subitem \spxentry{pyrockmodulus.formatting\_codes}, \hyperpage{14}
+    \subitem \spxentry{pyrockmodulus.pyrockmodulus}, \hyperpage{9}, \hyperpage{11}, \hyperpage{13}
+    \subitem \spxentry{pyrockmodulus.rock\_variables}, \hyperpage{13}
+    \subitem \spxentry{pyrockmodulus.ucs\_bar\_chart\_plot}, \hyperpage{15}
+  \item \spxentry{modulus\_ratio}\spxextra{class in pyrockmodulus.pyrockmodulus}, \hyperpage{9}
+  \item \spxentry{my\_path}\spxextra{in module pyrockmodulus.ucs\_bar\_chart\_plot}, \hyperpage{15}
+
+  \indexspace
+  \bigletter P
+  \item \spxentry{plot\_clusters()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}, 
+		\hyperpage{11}
+  \item \spxentry{plot\_span\_chart()}\spxextra{pyrockmodulus.pyrockmodulus.poisson\_density method}, 
+		\hyperpage{13}
+  \item \spxentry{plot\_v\_lines()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}, 
+		\hyperpage{11}
+  \item \spxentry{poisson\_density}\spxextra{class in pyrockmodulus.pyrockmodulus}, \hyperpage{13}
+  \item \spxentry{print\_progress()}\spxextra{in module pyrockmodulus.formatting\_codes}, 
+		\hyperpage{14}
+  \item \spxentry{pyrockmodulus.formatting\_codes}
+    \subitem \spxentry{module}, \hyperpage{14}
+  \item \spxentry{pyrockmodulus.pyrockmodulus}
+    \subitem \spxentry{module}, \hyperpage{9}, \hyperpage{11}, \hyperpage{13}
+  \item \spxentry{pyrockmodulus.rock\_variables}
+    \subitem \spxentry{module}, \hyperpage{13}
+  \item \spxentry{pyrockmodulus.ucs\_bar\_chart\_plot}
+    \subitem \spxentry{module}, \hyperpage{15}
+
+  \indexspace
+  \bigletter R
+  \item \spxentry{red\_text()}\spxextra{in module pyrockmodulus.formatting\_codes}, \hyperpage{15}
+
+  \indexspace
+  \bigletter S
+  \item \spxentry{strength\_ratio}\spxextra{class in pyrockmodulus.pyrockmodulus}, \hyperpage{11}
+
+  \indexspace
+  \bigletter U
+  \item \spxentry{ucs\_strength\_criteria()}\spxextra{in module pyrockmodulus.rock\_variables}, 
+		\hyperpage{13}
+
+\end{sphinxtheindex}
