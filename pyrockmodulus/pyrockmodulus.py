@@ -25,7 +25,7 @@ Default MATPLOTLIB Fonts
 '''
 
 # plt.rcParams['figure.constrained_layout.use'] = True
-plt.rcParams["figure.figsize"] = [8,8]
+plt.rcParams["figure.figsize"] = [6, 6]
 matplotlib.rcParams['font.family'] = ['arial']
 matplotlib.rcParams['font.size'] = 12
 
@@ -439,9 +439,9 @@ class strength_ratio:
 
         # Indicate to user which curve is being plotted.
         if rock_type_to_plot:
-            print("\tPlotting Modulus Ratio for %s Clusters" % formatting_codes.bold_text(rock_type_to_plot))
+            print("\tPlotting Strength Ratio for %s Clusters" % formatting_codes.bold_text(rock_type_to_plot))
         else:
-            print("\tPlotting Deere Miller for All Clusters")
+            print("\tPlotting Strength Ratio for All Clusters")
 
         # Initialise Plotting Axis
         if ax is None:
