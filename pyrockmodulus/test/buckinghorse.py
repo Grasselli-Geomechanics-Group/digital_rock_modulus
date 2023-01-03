@@ -103,7 +103,7 @@ for loc in location.keys():
         for idx, i in enumerate(x):
             plotting_SR_axis.text(x[idx], y[idx], str(list_of_strings[idx]))
 
-plotting_SR_axis.set_ylabel("UCS (MPa)")
+plotting_SR_axis.set_ylabel("Peak Stress (MPa)")
 plotting_SR_axis.set_xlabel("BD (MPa)")
 plotting_SR_axis.legend()
 plt.tight_layout()

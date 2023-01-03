@@ -5,3 +5,6 @@
 /pyrockmodulus/Data/poisson_density_ranges.xlsx
 /pyrockmodulus/Data/data.csv
 .idea
+/wheel_setup/
+/build/
+/dist/

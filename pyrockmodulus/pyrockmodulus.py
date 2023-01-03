@@ -49,31 +49,36 @@ class modulus_ratio:
     # Load default variables
     _rocktype_dictionary = rock_variables._rocktype_dictionary
 
-    def load_data(self, df_deere_miller_data):
+    def _load_data(self, df_type='MR'):
         """
         Load the file that holds the digital deere_miller cluster points. This information will be used to plot the deere-miller clusters based on the user requirements.
 
-        :param df_deere_miller_data: file path to the location of the csv
-        :type df_deere_miller_data: str
+        :param df_type: variable to load. MR = Deere Miller; SR = Tatone et. al. 
+        :type df_type: str
 
         :return: dictionary containing the type of rock and the points that form its cluster.
         :rtype: dict
+        
+        
         """
 
         # global df_deere_miller
 
-        # Load deere-miller digitized plots
         # Data digitization courtesy of Rohatgi, Ankit. "WebPlotDigitizer." (2017).
-        df_deere_miller = pd.read_csv(os.path.join(my_path, 'Data', df_deere_miller_data), header=None)
-
-        # Initialise the deere-miller as a dictionary
+        # Initialise the deere-miller digitized plots as a dictionary
         db_deere_miller = {}
+        if df_type == 'MR':
+            db_deere_miller_list = rock_variables._rock_deere_miller_points
+        elif df_type == 'SR':
+            db_deere_miller_list = rock_variables._rock_tatone_et_al_points
+        else:
+            raise KeyError("Unknown clusters to plot.")
 
-        for i in range(0, len(df_deere_miller.columns), 2):
-            name = df_deere_miller.iloc[0,i]
-            a = pd.Series(df_deere_miller.iloc[:,i].iloc[2:], dtype='float') # column of data frame
-            b = pd.Series(df_deere_miller.iloc[:,i+1].iloc[2:], dtype='float')  # column of data frame (last_name)
-            db_deere_miller[name] = [a, b]
+        # Convert the dictionary in rock_variables.py to a panda.series
+        for k, v in db_deere_miller_list.items():
+            a_panda = pd.Series(list(v[0].values()))
+            b_panda = pd.Series(list(v[1].values()))
+            db_deere_miller[k] = [a_panda, b_panda]
 
         return db_deere_miller
 
@@ -280,7 +285,7 @@ class modulus_ratio:
         """
 
         # Load the data Deere Miller digitized plots
-        df_of_clusters_deere_miller = self.load_data("Digitized_deere_miller.csv")
+        df_of_clusters_deere_miller = self._load_data("MR")
 
         # Indicate to user which curve is being plotted.
         if rock_type_to_plot:
@@ -435,7 +440,7 @@ class strength_ratio:
         """
 
         # Load the data Deere Miller digitized plots
-        df_of_clusters_tatone_et_al = modulus_ratio.load_data(self, "Digitized_tatone_et_al.csv")
+        df_of_clusters_tatone_et_al = modulus_ratio._load_data(self, "SR")
 
         # Indicate to user which curve is being plotted.
         if rock_type_to_plot:
@@ -546,7 +551,7 @@ MAIN MODULE
 
 if __name__ == "__main__":
     try:
-        # Names of files are defined in initial_processing - load_data module
+        # Names of files are defined in initial_processing - _load_data module
         # INPUT x_para, y_para, x_para name, y_para name,  UCS Strength Criteria adopted, "Rock"//"Replica"
         plx = modulus_ratio().initial_processing(plot_all_clusters=False, rock_type_to_plot='Sedimentary', ucs_class_type="ISRMCAT\n1979")
         plx.scatter(10, 10, label="DataPoint")
