@@ -37,8 +37,8 @@ import matplotlib.pyplot as plt
 
 xx = pyrockmodulus.strength_ratio()
 xx.initial_processing(plot_all_clusters=False, rock_type_to_plot='Sedimentary')
-plt.ylabel("BDS (MPa)")
-plt.xlabel("UCS (MPa)")
+plt.ylabel("UCS (MPa)")
+plt.xlabel("BDS (MPa)")
 plt.show()
 
 '''

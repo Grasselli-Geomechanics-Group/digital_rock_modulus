@@ -1,11 +1,9 @@
 /Old Modules/
-/pyrockmodulus/Data/rock_database_OringialSubmission (copy).xlsx
-/pyrockmodulus/Data/rock_database.xlsx
-/pyrockmodulus/Data/Density&Poisson.xlsx
-/pyrockmodulus/Data/poisson_density_ranges.xlsx
-/pyrockmodulus/Data/data.csv
 .idea
 /wheel_setup/
 /build/
 /dist/
+/pyrockmodulus/Data/
+/pyrockmodulus/test/
+/pyrockmodulus.egg-info/
 /pyrockmodulus.egg-info/

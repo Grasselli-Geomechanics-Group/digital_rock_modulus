@@ -252,7 +252,8 @@ class modulus_ratio:
         ax.set_ylim(self._ymin, self._ymax)
         # Log-Log Scale
         ax.loglog()
-        ax.grid(major_axis_vline, alpha=0.5, zorder=-1)
+        if major_axis_vline:
+            ax.grid(alpha=0.5, zorder=-1)
         # Format the Number to XX format for X and Y axis
         for axis in [ax.xaxis, ax.yaxis]:
             formatter = FuncFormatter(lambda ax_lab, _: '{:.16g}'.format(ax_lab))
