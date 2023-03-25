@@ -1,6 +1,7 @@
 # Introduction 
 
-Makes it easier to classify the Deere-Miller - Modulus Ratio [MR] and Tatone et al. - Strength Ratio [SR].
+The package herein helps visualise the relationship between the uniaxial compressive strength (UCS), Young's Modulus (E), and the in-direct tensile strength, commonly known as the Brazilian Disc (BD). The Modulus Ratio **(MR)** is the correlation between the UCS and E while the Strength Ratio **(SR)** is the correlation between the BD and UCS.
+
 
 For any suggestions, bugs or if you wish to contribute to the project => [REPO](https://github.com/alicarlos/digital_modulus_strength_ratio)
 
@@ -11,7 +12,7 @@ Loads the digitized Deere_Miller clusters and plots them based on the Major Rock
 - Plot all Major Rock Type in one graph.
 - Plots them individually.
 
-**Deere-Miller [Modulus Ratio] Example**
+**Modulus Ratio Example**
 
 1. Plot the Modulus Ratio of just the Sedimentary clusters with the ISRM 1979 category classification. 
 ```python

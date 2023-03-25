@@ -5,18 +5,18 @@
 \indexentry{deere\_miller\_clusters() (pyrockmodulus.pyrockmodulus.modulus\_ratio method)@\spxentry{deere\_miller\_clusters()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}|hyperpage}{9}
 \indexentry{format\_axis() (pyrockmodulus.pyrockmodulus.modulus\_ratio method)@\spxentry{format\_axis()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}|hyperpage}{10}
 \indexentry{initial\_processing() (pyrockmodulus.pyrockmodulus.modulus\_ratio method)@\spxentry{initial\_processing()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}|hyperpage}{10}
-\indexentry{load\_data() (pyrockmodulus.pyrockmodulus.modulus\_ratio method)@\spxentry{load\_data()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}|hyperpage}{10}
-\indexentry{plot\_clusters() (pyrockmodulus.pyrockmodulus.modulus\_ratio method)@\spxentry{plot\_clusters()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}|hyperpage}{11}
+\indexentry{plot\_clusters() (pyrockmodulus.pyrockmodulus.modulus\_ratio method)@\spxentry{plot\_clusters()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}|hyperpage}{10}
 \indexentry{plot\_v\_lines() (pyrockmodulus.pyrockmodulus.modulus\_ratio method)@\spxentry{plot\_v\_lines()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}|hyperpage}{11}
 \indexentry{module@\spxentry{module}!pyrockmodulus.pyrockmodulus@\spxentry{pyrockmodulus.pyrockmodulus}|hyperpage}{11}
 \indexentry{pyrockmodulus.pyrockmodulus@\spxentry{pyrockmodulus.pyrockmodulus}!module@\spxentry{module}|hyperpage}{11}
 \indexentry{strength\_ratio (class in pyrockmodulus.pyrockmodulus)@\spxentry{strength\_ratio}\spxextra{class in pyrockmodulus.pyrockmodulus}|hyperpage}{11}
 \indexentry{abline() (pyrockmodulus.pyrockmodulus.strength\_ratio method)@\spxentry{abline()}\spxextra{pyrockmodulus.pyrockmodulus.strength\_ratio method}|hyperpage}{11}
-\indexentry{format\_axis() (pyrockmodulus.pyrockmodulus.strength\_ratio method)@\spxentry{format\_axis()}\spxextra{pyrockmodulus.pyrockmodulus.strength\_ratio method}|hyperpage}{12}
+\indexentry{format\_axis() (pyrockmodulus.pyrockmodulus.strength\_ratio method)@\spxentry{format\_axis()}\spxextra{pyrockmodulus.pyrockmodulus.strength\_ratio method}|hyperpage}{11}
 \indexentry{initial\_processing() (pyrockmodulus.pyrockmodulus.strength\_ratio method)@\spxentry{initial\_processing()}\spxextra{pyrockmodulus.pyrockmodulus.strength\_ratio method}|hyperpage}{12}
-\indexentry{module@\spxentry{module}!pyrockmodulus.pyrockmodulus@\spxentry{pyrockmodulus.pyrockmodulus}|hyperpage}{13}
-\indexentry{pyrockmodulus.pyrockmodulus@\spxentry{pyrockmodulus.pyrockmodulus}!module@\spxentry{module}|hyperpage}{13}
-\indexentry{poisson\_density (class in pyrockmodulus.pyrockmodulus)@\spxentry{poisson\_density}\spxextra{class in pyrockmodulus.pyrockmodulus}|hyperpage}{13}
+\indexentry{module@\spxentry{module}!pyrockmodulus.pyrockmodulus@\spxentry{pyrockmodulus.pyrockmodulus}|hyperpage}{12}
+\indexentry{pyrockmodulus.pyrockmodulus@\spxentry{pyrockmodulus.pyrockmodulus}!module@\spxentry{module}|hyperpage}{12}
+\indexentry{poisson\_density (class in pyrockmodulus.pyrockmodulus)@\spxentry{poisson\_density}\spxextra{class in pyrockmodulus.pyrockmodulus}|hyperpage}{12}
+\indexentry{check\_df\_col\_validity() (pyrockmodulus.pyrockmodulus.poisson\_density method)@\spxentry{check\_df\_col\_validity()}\spxextra{pyrockmodulus.pyrockmodulus.poisson\_density method}|hyperpage}{12}
 \indexentry{initial\_processing() (pyrockmodulus.pyrockmodulus.poisson\_density method)@\spxentry{initial\_processing()}\spxextra{pyrockmodulus.pyrockmodulus.poisson\_density method}|hyperpage}{13}
 \indexentry{plot\_span\_chart() (pyrockmodulus.pyrockmodulus.poisson\_density method)@\spxentry{plot\_span\_chart()}\spxextra{pyrockmodulus.pyrockmodulus.poisson\_density method}|hyperpage}{13}
 \indexentry{module@\spxentry{module}!pyrockmodulus.rock\_variables@\spxentry{pyrockmodulus.rock\_variables}|hyperpage}{13}
@@ -33,4 +33,3 @@
 \indexentry{module@\spxentry{module}!pyrockmodulus.ucs\_bar\_chart\_plot@\spxentry{pyrockmodulus.ucs\_bar\_chart\_plot}|hyperpage}{15}
 \indexentry{pyrockmodulus.ucs\_bar\_chart\_plot@\spxentry{pyrockmodulus.ucs\_bar\_chart\_plot}!module@\spxentry{module}|hyperpage}{15}
 \indexentry{initial\_processing() (in module pyrockmodulus.ucs\_bar\_chart\_plot)@\spxentry{initial\_processing()}\spxextra{in module pyrockmodulus.ucs\_bar\_chart\_plot}|hyperpage}{15}
-\indexentry{my\_path (in module pyrockmodulus.ucs\_bar\_chart\_plot)@\spxentry{my\_path}\spxextra{in module pyrockmodulus.ucs\_bar\_chart\_plot}|hyperpage}{15}

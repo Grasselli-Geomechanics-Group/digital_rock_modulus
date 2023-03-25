@@ -61,7 +61,7 @@
 
 
 \title{Digital plots of Modulus and Strength ratio for Rocks}
-\date{Dec 19, 2022}
+\date{Mar 25, 2023}
 \release{0.0}
 \author{Grasselli\textquotesingle{}s Geomechanics Group \sphinxhyphen{} University of Toronto}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -88,7 +88,7 @@
 \chapter{Introduction}
 \label{\detokenize{postprocessing_intro:introduction}}\label{\detokenize{postprocessing_intro::doc}}
 \sphinxAtStartPar
-Makes it easier to classify the Deere\sphinxhyphen{}Miller \sphinxhyphen{} Modulus Ratio {[}MR{]} and Tatone et al. \sphinxhyphen{} Strength Ratio {[}SR{]}.
+The package herein helps visualise the relationship between the uniaxial compressive strength (UCS), Young’s Modulus (E), and the in\sphinxhyphen{}direct tensile strength, commonly known as the Brazilian Disc (BD). The Modulus Ratio \sphinxstylestrong{(MR)} is the correlation between the UCS and E while the Strength Ratio \sphinxstylestrong{(SR)} is the correlation between the BD and UCS.
 
 \sphinxAtStartPar
 For any suggestions, bugs or if you wish to contribute to the project =\textgreater{} \sphinxhref{https://github.com/alicarlos/digital\_modulus\_strength\_ratio}{REPO}
@@ -113,7 +113,7 @@ Plots them individually.
 \end{itemize}
 
 \sphinxAtStartPar
-\sphinxstylestrong{Deere\sphinxhyphen{}Miller {[}Modulus Ratio{]} Example}
+\sphinxstylestrong{Modulus Ratio Example}
 \begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
@@ -518,32 +518,6 @@ Matplotlib Axis
 
 \end{fulllineitems}
 
-\index{load\_data() (pyrockmodulus.pyrockmodulus.modulus\_ratio method)@\spxentry{load\_data()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{pyrockmodulus:pyrockmodulus.pyrockmodulus.modulus_ratio.load_data}}
-\pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{load\_data}}}{\emph{\DUrole{n}{df\_deere\_miller\_data}}}{}
-\pysigstopsignatures
-\sphinxAtStartPar
-Load the file that holds the digital deere\_miller cluster points. This information will be used to plot the deere\sphinxhyphen{}miller clusters based on the user requirements.
-\begin{quote}\begin{description}
-\sphinxlineitem{Parameters}
-\sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{df\_deere\_miller\_data}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} file path to the location of the csv
-
-\sphinxlineitem{Returns}
-\sphinxAtStartPar
-dictionary containing the type of rock and the points that form its cluster.
-
-\sphinxlineitem{Return type}
-\sphinxAtStartPar
-dict
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
 \index{plot\_clusters() (pyrockmodulus.pyrockmodulus.modulus\_ratio method)@\spxentry{plot\_clusters()}\spxextra{pyrockmodulus.pyrockmodulus.modulus\_ratio method}}
 
 \begin{fulllineitems}
@@ -817,6 +791,47 @@ Bases: \sphinxcode{\sphinxupquote{object}}
 
 \sphinxAtStartPar
 Load Poisson Ratio and Density information
+\index{check\_df\_col\_validity() (pyrockmodulus.pyrockmodulus.poisson\_density method)@\spxentry{check\_df\_col\_validity()}\spxextra{pyrockmodulus.pyrockmodulus.poisson\_density method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{pyrockmodulus:pyrockmodulus.pyrockmodulus.poisson_density.check_df_col_validity}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{check\_df\_col\_validity}}}{\emph{\DUrole{n}{df\_to\_plot}}, \emph{\DUrole{n}{var}}, \emph{\DUrole{n}{err\_message}\DUrole{o}{=}\DUrole{default_value}{"{[}\textquotesingle{}Min\_P\textquotesingle{}, \textquotesingle{}Max\_P\textquotesingle{}{]} or {[}\textquotesingle{}Min\_D\textquotesingle{}, \textquotesingle{}Max\_D\textquotesingle{}{]}"}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Checks if values are within the DataFrame column passed.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df\_to\_plot}} (\sphinxstyleliteralemphasis{\sphinxupquote{pandas.DataFrame}}) \textendash{} Panda Dataframe to plot
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{var}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} Valriable name to check
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{err\_message}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} Validation message for Options available to user
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+True
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+bool
+
+\sphinxlineitem{Raises}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{KeyError}} \textendash{} The value entered is not within the available options.
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{initial\_processing() (pyrockmodulus.pyrockmodulus.poisson\_density method)@\spxentry{initial\_processing()}\spxextra{pyrockmodulus.pyrockmodulus.poisson\_density method}}
 
 \begin{fulllineitems}
@@ -844,7 +859,7 @@ pandas.DataFrame
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{pyrockmodulus:pyrockmodulus.pyrockmodulus.poisson_density.plot_span_chart}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot\_span\_chart}}}{\emph{\DUrole{n}{df\_to\_plot}}, \emph{\DUrole{n}{variable\_span}}, \emph{\DUrole{n}{variable\_label}}, \emph{\DUrole{n}{variable\_units}}, \emph{\DUrole{n}{ax}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot\_span\_chart}}}{\emph{\DUrole{n}{df\_to\_plot}}, \emph{\DUrole{n}{variable\_span}}, \emph{\DUrole{n}{variable\_label}}, \emph{\DUrole{n}{variable\_units}}, \emph{\DUrole{n}{ax}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Plot a chart divided by the rock type and rock group.
@@ -869,6 +884,10 @@ Plot a chart divided by the rock type and rock group.
 \item {} 
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{ax}} (\sphinxstyleliteralemphasis{\sphinxupquote{Matplolib}}) \textendash{} Matplotlib Axis to plot On
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{kwargs}} (\sphinxstyleliteralemphasis{\sphinxupquote{keywords}}) \textendash{} Options to pass to matplotlib plotting method
 
 \end{itemize}
 
@@ -1115,17 +1134,18 @@ str
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxcode{\sphinxupquote{pyrockmodulus.ucs\_bar\_chart\_plot.}}\sphinxbfcode{\sphinxupquote{initial\_processing}}}{}{}
 \pysigstopsignatures
-\end{fulllineitems}
-
-\index{my\_path (in module pyrockmodulus.ucs\_bar\_chart\_plot)@\spxentry{my\_path}\spxextra{in module pyrockmodulus.ucs\_bar\_chart\_plot}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{pyrockmodulus:pyrockmodulus.ucs_bar_chart_plot.my_path}}
-\pysigstartsignatures
-\pysigline{\sphinxcode{\sphinxupquote{pyrockmodulus.ucs\_bar\_chart\_plot.}}\sphinxbfcode{\sphinxupquote{my\_path}}\sphinxbfcode{\sphinxupquote{\DUrole{w}{  }\DUrole{p}{=}\DUrole{w}{  }\textquotesingle{}/hdd/home/aly/Desktop/Dropbox/Python\_Codes/digital\_modulus\_strength\_ratio/pyrockmodulus\textquotesingle{}}}}
-\pysigstopsignatures
 \sphinxAtStartPar
-Default MATPLOTLIB Fonts
+Load the UCS Strength Criterion and plot them in a Horizontal Bar Chart with the various criteria
+\begin{quote}\begin{description}
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+Matplotlib AxesSubplots
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+Matplotlib Axis
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 

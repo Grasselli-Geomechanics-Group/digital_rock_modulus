@@ -18,5 +18,7 @@ To format the HTML files, refer to `index.rst` and `conf.py`.
 To rerun the Latex and PDF build (ex. if a docstring is updated), run
  `make latexpdf` 
  in terminal.
+If you encounter [Makefile:20: pdflatex] Error 2, run
+`sphinx-build -M latexpdf . _build`
 
 To view the PDF file, navigate to  `_build` -> `latex` -> [openfdempost-processing.pdf](_build/latex/openfdempost-processing.pdf). 

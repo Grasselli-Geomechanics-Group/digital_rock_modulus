@@ -37,7 +37,6 @@ my_path = os.path.dirname(
 ##TODO:
 # Allow to reset the xaxis and yaxis and house all the information (MR and SR)
 # Allow to change the colors and have more control over what to plot in terms of sub-category of the rock type (MR and SR)
-# Option to load csv for the poisson-density plots.
 
 class modulus_ratio:
     """
@@ -381,6 +380,8 @@ class poisson_density():
         :type variable_units: str
         :param ax: Matplotlib Axis to plot On
         :type ax: Matplolib
+        :param kwargs: Options to pass to matplotlib plotting method
+        :type kwargs: keywords
 
         :return: Matplotlib AxesSubplots
         :rtype: Matplotlib Axis

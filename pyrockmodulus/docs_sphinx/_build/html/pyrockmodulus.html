@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="pyfdempp" href="modules.html" /> 
+    <link rel="prev" title="pyrockmodulus" href="modules.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,7 +40,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="postprocessing_intro.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyfdempp</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyrockmodulus</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">pyrockmodulus package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#module-pyrockmodulus.pyrockmodulus">Deere-Miller - Modulus Ratio (MR)</a></li>
@@ -74,7 +74,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">pyfdempp</a></li>
+          <li class="breadcrumb-item"><a href="modules.html">pyrockmodulus</a></li>
       <li class="breadcrumb-item active">pyrockmodulus package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/pyrockmodulus.rst.txt" rel="nofollow"> View page source</a>
@@ -215,23 +215,6 @@ Data digitization courtesy of Rohatgi, Ankit. “WebPlotDigitizer.” (2017).</p
 </dd>
 </dl>
 </div></blockquote>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.modulus_ratio.load_data">
-<span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_deere_miller_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.modulus_ratio.load_data" title="Permalink to this definition"></a></dt>
-<dd><p>Load the file that holds the digital deere_miller cluster points. This information will be used to plot the deere-miller clusters based on the user requirements.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>df_deere_miller_data</strong> (<em>str</em>) – file path to the location of the csv</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>dictionary containing the type of rock and the points that form its cluster.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -398,6 +381,30 @@ Data was built using a bivariant KDE
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Load Poisson Ratio and Density information</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.poisson_density.check_df_col_validity">
+<span class="sig-name descname"><span class="pre">check_df_col_validity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_to_plot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">err_message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&quot;['Min_P',</span> <span class="pre">'Max_P']</span> <span class="pre">or</span> <span class="pre">['Min_D',</span> <span class="pre">'Max_D']&quot;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.poisson_density.check_df_col_validity" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if values are within the DataFrame column passed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df_to_plot</strong> (<em>pandas.DataFrame</em>) – Panda Dataframe to plot</p></li>
+<li><p><strong>var</strong> (<em>str</em>) – Valriable name to check</p></li>
+<li><p><strong>err_message</strong> (<em>str</em>) – Validation message for Options available to user</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>KeyError</strong> – The value entered is not within the available options.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.poisson_density.initial_processing">
 <span class="sig-name descname"><span class="pre">initial_processing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.poisson_density.initial_processing" title="Permalink to this definition"></a></dt>
 <dd><p>Load the variables and initialise the dataframe.</p>
@@ -413,7 +420,7 @@ Data was built using a bivariant KDE
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrockmodulus.pyrockmodulus.poisson_density.plot_span_chart">
-<span class="sig-name descname"><span class="pre">plot_span_chart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_to_plot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_span</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_units</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.poisson_density.plot_span_chart" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot_span_chart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_to_plot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_span</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_units</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.pyrockmodulus.poisson_density.plot_span_chart" title="Permalink to this definition"></a></dt>
 <dd><p>Plot a chart divided by the rock type and rock group.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -423,6 +430,7 @@ Data was built using a bivariant KDE
 <li><p><strong>variable_label</strong> (<em>str</em>) – Variable Name. X axis label</p></li>
 <li><p><strong>variable_units</strong> (<em>str</em>) – Variable Units. X axis label unit</p></li>
 <li><p><strong>ax</strong> (<em>Matplolib</em>) – Matplotlib Axis to plot On</p></li>
+<li><p><strong>kwargs</strong> (<em>keywords</em>) – Options to pass to matplotlib plotting method</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -581,12 +589,15 @@ Adjusted bar length to 50, to display on small screen</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pyrockmodulus.ucs_bar_chart_plot.initial_processing">
 <span class="sig-prename descclassname"><span class="pre">pyrockmodulus.ucs_bar_chart_plot.</span></span><span class="sig-name descname"><span class="pre">initial_processing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrockmodulus.ucs_bar_chart_plot.initial_processing" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="pyrockmodulus.ucs_bar_chart_plot.my_path">
-<span class="sig-prename descclassname"><span class="pre">pyrockmodulus.ucs_bar_chart_plot.</span></span><span class="sig-name descname"><span class="pre">my_path</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/hdd/home/aly/Desktop/Dropbox/Python_Codes/digital_modulus_strength_ratio/pyrockmodulus'</span></em><a class="headerlink" href="#pyrockmodulus.ucs_bar_chart_plot.my_path" title="Permalink to this definition"></a></dt>
-<dd><p>Default MATPLOTLIB Fonts</p>
+<dd><p>Load the UCS Strength Criterion and plot them in a Horizontal Bar Chart with the various criteria</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matplotlib AxesSubplots</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Matplotlib Axis</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -597,7 +608,7 @@ Adjusted bar length to 50, to display on small screen</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-left" title="pyfdempp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-left" title="pyrockmodulus" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
