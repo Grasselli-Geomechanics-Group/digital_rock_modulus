@@ -1,11 +1,12 @@
-import pandas as pd
+import math
+import os
+import time
+
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-import os
+import pandas as pd
 from matplotlib.ticker import FuncFormatter
-import time
-import math
 
 try:
     from . import formatting_codes
@@ -82,7 +83,6 @@ class modulus_ratio:
 
         return db_deere_miller
 
-
     def plot_v_lines(self, vlines, ax):
         """
         Plot lines and annotate the UCS Strength Criteria adopted
@@ -105,16 +105,18 @@ class modulus_ratio:
             # Annotate only the values that lie in the range
             if category_values[r_type_val + 1] > self._xmin and category_values[r_type_val] <= self._xmax:
                 if category_values[r_type_val + 1] > self._xmax:  # Condition that value > axis limit
-                    ax.text(math.sqrt(self._xmax * category_values[r_type_val]), math.sqrt(self._ymax * (0.8 * self._ymax)),
+                    ax.text(math.sqrt(self._xmax * category_values[r_type_val]),
+                            math.sqrt(self._ymax * (0.8 * self._ymax)),
                             category_names[r_type_val], ha='center', va='center', color='g', fontweight='bold')
                 elif category_values[r_type_val] < self._xmin:  # Condition that value < axis limit
-                    ax.text(math.sqrt(self._ymin * category_values[r_type_val + 1]), math.sqrt(self._ymax * (0.8 * self._ymax)),
+                    ax.text(math.sqrt(self._ymin * category_values[r_type_val + 1]),
+                            math.sqrt(self._ymax * (0.8 * self._ymax)),
                             category_names[r_type_val], ha='center', va='center', color='g', fontweight='bold')
                 else:  # Values in between
                     ax.text(math.sqrt(category_values[r_type_val + 1] * category_values[r_type_val]),
-                            math.sqrt(self._ymax * (0.8 * self._ymax)), category_names[r_type_val], ha='center', va='center', color='g',
+                            math.sqrt(self._ymax * (0.8 * self._ymax)), category_names[r_type_val], ha='center',
+                            va='center', color='g',
                             fontweight='bold')
-
 
     def abline(self, slope, intercept, dr_state, multiplier=1, ratio='', ax=None, x_text_loc=0.15):
         """
@@ -156,11 +158,11 @@ class modulus_ratio:
         if dr_state == "line":
             ax.plot(x_vals, y_vals, color='grey', alpha=0.5, linestyle='--', zorder=-1)
             # Add the text to the sloped line
-            ax.text(x_text_loc, intercept + (slope / multiplier) * x_text_loc, '{:d}:1'.format(int(slope)), rotation=txt_slope, bbox=dict(facecolor='white', edgecolor="white"))
+            ax.text(x_text_loc, intercept + (slope / multiplier) * x_text_loc, '{:d}:1'.format(int(slope)),
+                    rotation=txt_slope, bbox=dict(facecolor='white', edgecolor="white"))
         # Add the text to category
         if dr_state == "text":
-            ax.text(x_text_loc, intercept + (slope / multiplier) * x_text_loc,  ratio, rotation=txt_slope, alpha=0.5)
-
+            ax.text(x_text_loc, intercept + (slope / multiplier) * x_text_loc, ratio, rotation=txt_slope, alpha=0.5)
 
     def deere_miller_clusters(self, ax, df_of_clusters_deere_miller, r_type=None, plot_all_clusters_bool=False):
         """
@@ -179,8 +181,9 @@ class modulus_ratio:
         :rtype:
         """
 
-        if not plot_all_clusters_bool and r_type=='':
-            raise IndexError("If all clusters is disabled, the cluster to plot must be defined. df_of_clusters_deere_miller option should be Sedimentary, Igneous, Metamorphic")
+        if not plot_all_clusters_bool and r_type == '':
+            raise IndexError(
+                "If all clusters is disabled, the cluster to plot must be defined. df_of_clusters_deere_miller option should be Sedimentary, Igneous, Metamorphic")
         elif plot_all_clusters_bool and r_type != None:
             raise IndexError(
                 "If all clusters is enabled. r_type should not be specified.")
@@ -194,8 +197,7 @@ class modulus_ratio:
             # Load k,v pair as Rock Type name (k) and cluster area (v)
             for k, v in rock_variables._rocktype_dictionary.items():
                 if v[0] == r_type:
-                    modulus_ratio.plot_clusters(self, k ,v, ax, df_of_clusters_deere_miller)
-
+                    modulus_ratio.plot_clusters(self, k, v, ax, df_of_clusters_deere_miller)
 
     def plot_clusters(self, k, v, ax, df_of_clusters_deere_miller):
         """
@@ -219,22 +221,24 @@ class modulus_ratio:
             return
         else:
             if k in ['Sandstone', 'Shale']:
-                ax.plot(df_of_clusters_deere_miller[k][0], df_of_clusters_deere_miller[k][1], label=k, color=v[1], linewidth=1,
+                ax.plot(df_of_clusters_deere_miller[k][0], df_of_clusters_deere_miller[k][1], label=k, color=v[1],
+                        linewidth=1,
                         linestyle='--')
             # Schist has 2 areas
             elif k == 'Schist_Perp':
-                ax.fill(df_of_clusters_deere_miller['Schist_Perp'][0], df_of_clusters_deere_miller['Schist_Perp'][1], fill=False,
+                ax.fill(df_of_clusters_deere_miller['Schist_Perp'][0], df_of_clusters_deere_miller['Schist_Perp'][1],
+                        fill=False,
                         label='Schist Perpendicular', color=v[1], linewidth=1, linestyle='--')
             elif k == 'Schist_Flat':
-                ax.fill(df_of_clusters_deere_miller['Schist_Flat'][0], df_of_clusters_deere_miller['Schist_Flat'][1], fill=False,
+                ax.fill(df_of_clusters_deere_miller['Schist_Flat'][0], df_of_clusters_deere_miller['Schist_Flat'][1],
+                        fill=False,
                         label='Schist Parallel', color=v[1], linewidth=1, linestyle=':')
             else:
                 cleanedListx = df_of_clusters_deere_miller[k][0][~np.isnan(df_of_clusters_deere_miller[k][0])]
                 cleanedListy = df_of_clusters_deere_miller[k][1][~np.isnan(df_of_clusters_deere_miller[k][1])]
                 ax.fill(cleanedListx, cleanedListy, fill=False, label=k, color=v[1], linewidth=1, closed=True)
 
-
-    def format_axis(self, ax, state='', major_axis_vline = True):
+    def format_axis(self, ax, state='', major_axis_vline=True):
         """
         Format log-log Axis
 
@@ -261,14 +265,13 @@ class modulus_ratio:
 
         if not state:
             # Draw Slopped line to presents different Areas
-            self.abline(200 , 0, "line", 1000, '', ax)  # Slope of Modulus Ratio Low:Average MPa to GPa
-            self.abline(500 , 0, "line", 1000, '', ax)  # Slope of Modulus Ratio Average:High MPa to GPa
+            self.abline(200, 0, "line", 1000, '', ax)  # Slope of Modulus Ratio Low:Average MPa to GPa
+            self.abline(500, 0, "line", 1000, '', ax)  # Slope of Modulus Ratio Average:High MPa to GPa
 
             # Text to Classify the MR domains
-            self.abline(800 , 0, "text", 1000, "High MR",ax)  # High MR
-            self.abline(math.sqrt(200*500), 0, "text",1000, 'Average MR', ax)  # Average MR
-            self.abline(100, 0, "text", 1000, 'Low MR',ax)  # Low MR
-
+            self.abline(800, 0, "text", 1000, "High MR", ax)  # High MR
+            self.abline(math.sqrt(200 * 500), 0, "text", 1000, 'Average MR', ax)  # Average MR
+            self.abline(100, 0, "text", 1000, 'Low MR', ax)  # Low MR
 
     def initial_processing(self, rock_type_to_plot=None, plot_all_clusters=False, ucs_class_type=None, ax=None):
         """
@@ -300,7 +303,8 @@ class modulus_ratio:
             self._xmin, self._xmax = 0.1, 500
             self._ymin, self._ymax = 0.01, 200
 
-        self.deere_miller_clusters(ax, df_of_clusters_deere_miller, r_type=rock_type_to_plot, plot_all_clusters_bool=plot_all_clusters)
+        self.deere_miller_clusters(ax, df_of_clusters_deere_miller, r_type=rock_type_to_plot,
+                                   plot_all_clusters_bool=plot_all_clusters)
 
         # Load information for UCS Strength Criteria adopted
         global category_names, category_values
@@ -313,11 +317,11 @@ class modulus_ratio:
 
         return ax
 
+
 class poisson_density():
     """
     Load Poisson Ratio and Density information
     """
-
 
     def initial_processing(self):
         """
@@ -342,7 +346,6 @@ class poisson_density():
 
         return df
 
-
     def check_df_col_validity(self, df_to_plot, var, err_message="['Min_P', 'Max_P'] or ['Min_D', 'Max_D']"):
         """
         Checks if values are within the DataFrame column passed.
@@ -363,7 +366,6 @@ class poisson_density():
             raise KeyError("Available Options %s" % err_message)
 
         return
-
 
     def plot_span_chart(self, df_to_plot, variable_span, variable_label, variable_units, ax=None, **kwargs):
         """
@@ -400,11 +402,12 @@ class poisson_density():
         # Get data for the Span Chart
         # X is the Rock Name and Y is the Parameter to plot
         # Change the grey to the required bar color
-        df_to_plot.plot.barh(x='Rock Type', y=variable_span, stacked=True, color=['white', 'grey'], alpha=0.5, ax=ax, **kwargs)
+        df_to_plot.plot.barh(x='Rock Type', y=variable_span, stacked=True, color=['white', 'grey'], alpha=0.5, ax=ax,
+                             **kwargs)
 
         # Make key, value pairs of the groups and their Cummalitive length to draw the H lines.
         df_dict_groups = dict(zip(list(dfx.groups.keys()), list(np.cumsum(dfx.size()))))
-        # initilise variable
+        # initialise variable
         hline_loc = 0
         # Loop over the key value pair and draw H lines and their corresponding key midway.
         for counter, (k, v) in enumerate(df_dict_groups.items()):
@@ -447,7 +450,6 @@ class strength_ratio:
     # Load default variables
     _rocktype_dict = rock_variables._rocktype_dictionary
 
-
     def initial_processing(self, rock_type_to_plot=None, plot_all_clusters=False, ucs_class_type=None, ax=None):
         """
         Main function to plot the Modulus Ratio underlay
@@ -480,7 +482,7 @@ class strength_ratio:
             self._ymin, self._ymax = 1, 500
 
         modulus_ratio.deere_miller_clusters(self, ax, df_of_clusters_tatone_et_al, r_type=rock_type_to_plot,
-                                   plot_all_clusters_bool=plot_all_clusters)
+                                            plot_all_clusters_bool=plot_all_clusters)
 
         # Load information for UCS Strength Criteria adopted
         global category_names, category_values
@@ -493,8 +495,7 @@ class strength_ratio:
 
         return ax
 
-
-    def format_axis(self, ax, state='', major_axis_vline = True):
+    def format_axis(self, ax, state='', major_axis_vline=True):
         """
         Format log-log Axis
 
@@ -518,17 +519,15 @@ class strength_ratio:
             formatter = FuncFormatter(lambda ax_lab, _: '{:.16g}'.format(ax_lab))
             axis.set_major_formatter(formatter)
 
-
         if not state:
             # Draw Slopped line to presents different Areas
-            self.abline( 20 , 0, "line", 1, '', ax)  # Slope of Strength Ratio Low:Average MPa to GPa
-            self.abline( 8 , 0, "line", 1, '', ax)  # Slope of Strength Ratio Average:High MPa to GPa
+            self.abline(20, 0, "line", 1, '', ax)  # Slope of Strength Ratio Low:Average MPa to GPa
+            self.abline(8, 0, "line", 1, '', ax)  # Slope of Strength Ratio Average:High MPa to GPa
 
             # Text to Classify the MR domains
-            self.abline( 30 , 0, "text", 1, "High UCS:BDS Ratio",ax, )  # High SR
-            self.abline( math.sqrt(20 * 8), 0, "text",1, 'Average UCS:BDS Ratio', ax, )  # Average SR
-            self.abline( 5, 0, "text", 1, 'Low UCS:BDS Ratio',ax, )  # Low SR
-
+            self.abline(30, 0, "text", 1, "High UCS:BDS Ratio", ax, )  # High SR
+            self.abline(math.sqrt(20 * 8), 0, "text", 1, 'Average UCS:BDS Ratio', ax, )  # Average SR
+            self.abline(5, 0, "text", 1, 'Low UCS:BDS Ratio', ax, )  # Low SR
 
     def abline(self, slope, intercept, dr_state, multiplier=1, ratio='', ax=None):
         """
@@ -557,7 +556,8 @@ class strength_ratio:
         x_vals = np.array(axes.get_xlim())  # Array the X as values from xlim
         y_vals = intercept + (slope / multiplier) * x_vals  # Get y values based on mx + c
         x_text_loc = 0.2  # X-Location of text
-        txt_slope = np.rad2deg(np.arctan2(np.log(y_vals[-1]) - np.log(y_vals[0]), np.log(x_vals[-1]) - np.log(x_vals[0])))
+        txt_slope = np.rad2deg(
+            np.arctan2(np.log(y_vals[-1]) - np.log(y_vals[0]), np.log(x_vals[-1]) - np.log(x_vals[0])))
 
         if dr_state == "line":
             ax.plot(x_vals, y_vals, color='grey', alpha=0.5, linestyle='--')
@@ -578,7 +578,8 @@ if __name__ == "__main__":
     try:
         # Names of files are defined in initial_processing - _load_data module
         # INPUT x_para, y_para, x_para name, y_para name,  UCS Strength Criteria adopted, "Rock"//"Replica"
-        plx = modulus_ratio().initial_processing(plot_all_clusters=False, rock_type_to_plot='Sedimentary', ucs_class_type="ISRMCAT\n1979")
+        plx = modulus_ratio().initial_processing(plot_all_clusters=False, rock_type_to_plot='Sedimentary',
+                                                 ucs_class_type="ISRMCAT\n1979")
         plx.scatter(10, 10, label="DataPoint")
         # Cosmetics to the figure and layouts
         plt.xlabel("UCS")

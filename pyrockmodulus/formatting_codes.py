@@ -132,4 +132,3 @@ if __name__ == "__main__":
         bold_text(text)
     except KeyboardInterrupt:
         exit("TERMINATED BY USER")
-
