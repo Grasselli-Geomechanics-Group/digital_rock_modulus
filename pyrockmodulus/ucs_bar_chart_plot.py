@@ -113,8 +113,11 @@ def initial_processing():
     ax.xaxis.set_major_formatter(matplotlib.ticker.ScalarFormatter())
     ax.ticklabel_format(style='plain', axis='x', useOffset=False)
     # Format Plot the tick marks for the Y axis
-    ax.yaxis.set_major_formatter(matplotlib.ticker.FixedFormatter(c_list))
-    ax.yaxis.set_major_locator(matplotlib.ticker.FixedLocator(c_loc))
+    ax.set_yticks(c_loc)
+    ax.set_yticklabels([x for x in c_list])
+    # Format Plot the tick marks for the Y axis - Produced UserWarning
+    # ax.yaxis.set_major_formatter(matplotlib.ticker.FixedFormatter(c_list))
+    # ax.yaxis.set_major_locator(matplotlib.ticker.FixedLocator(c_loc))
     # Enable the tick marks for the X axis on both the top and bottom with the values.
     ax.tick_params(bottom=True, top=True)
     ax.tick_params(labelbottom=True, labeltop=True)
