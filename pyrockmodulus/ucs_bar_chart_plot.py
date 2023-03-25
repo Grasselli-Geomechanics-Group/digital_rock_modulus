@@ -18,41 +18,29 @@ try:
 except ImportError:
     import rock_variables
 
-# Load UCS Strength Criterion py file
+# Load Formatting Codes py file
 try:
     from . import formatting_codes
 except ImportError:
     import formatting_codes
 
-
-# START OF EXECUTION
-abs_start = time.time()
-
-my_path = os.path.dirname(
-    os.path.abspath(__file__))  # Figures out the absolute path for you in case your working directory moves around.
-
-
 '''
 Default MATPLOTLIB Fonts
 '''
 
-
-# plt.rcParams['figure.constrained_layout.use'] = True
 plt.rcParams["figure.figsize"] = [12, 5]
 matplotlib.rcParams['font.family'] = ['arial']
 matplotlib.rcParams['font.size'] = 8
 
 
-'''
-PROCESS INFORMATION
-Input
-    - Load the UCS Strength Criterion
-Output 
-    - Horizontal Bar Chart with the various criteria 
-'''
-
-
 def initial_processing():
+    """
+    Load the UCS Strength Criterion and plot them in a Horizontal Bar Chart with the various criteria
+
+    :return: Matplotlib AxesSubplots
+    :rtype: Matplotlib Axis
+    """
+
     # Initialise Figure
     fig, ax = plt.subplots()
 
@@ -74,16 +62,16 @@ def initial_processing():
             c_list.append(k + str("*"))
         else:
             c_list.append(k)
+
     # List of the Y Locations of the Reference
     c_loc = []
     for i in range(0, len(c_list)):
         c_loc.append(initial_gap + (bar_width / 2) + i)
 
-
-    counter = 1
     plt.semilogx()  # Plot in semi-log domain
+
     # Plot the Horizontal Bar for each Category
-    for k, v in category_values.items():
+    for counter, (k, v) in enumerate(category_values.items()):
         for i in range(0, len(v)-1):
             if i in [0, len(v)-2]:
                 # Draw a line at the end of the category to show its continuity
@@ -106,33 +94,32 @@ def initial_processing():
             # Center is calculated for a log scale
             ax.text(math.sqrt(v[i + 1] * v[i]), 1 + counter - (bar_width * 3 / 2), category_names[k][i], ha='center', va='center',
                     color='g', fontweight='bold')
-        counter += 1  # Next Reference
 
     # Format Plot the tick marks for the X axis
     # Changes from the scientific mode to normal number mode
     ax.xaxis.set_major_formatter(matplotlib.ticker.ScalarFormatter())
     ax.ticklabel_format(style='plain', axis='x', useOffset=False)
+
     # Format Plot the tick marks for the Y axis
     ax.set_yticks(c_loc)
     ax.set_yticklabels([x for x in c_list])
     # Format Plot the tick marks for the Y axis - Produced UserWarning
     # ax.yaxis.set_major_formatter(matplotlib.ticker.FixedFormatter(c_list))
     # ax.yaxis.set_major_locator(matplotlib.ticker.FixedLocator(c_loc))
+
     # Enable the tick marks for the X axis on both the top and bottom with the values.
     ax.tick_params(bottom=True, top=True)
     ax.tick_params(labelbottom=True, labeltop=True)
+
     # X axis Label
     ax.set_xlabel("Unconfined Compressive Strength (MPa)")
+
     # Plot Limits and Axis
     plt.grid(which='major', axis='x', linestyle=':', linewidth=0.5)  # Major Axis
     plt.xlim(0.2,1000)
     plt.ylim(0, len(category_names.keys())+1 )
     plt.tight_layout()
-    # # Save Figure
-    # plt.savefig("UCS_Compare.pdf")
-    # plt.savefig("UCS_Compare.png", dpi=600)
-    # # Show Figure
-    # plt.show()
+
     return ax
 
 
@@ -145,6 +132,5 @@ MAIN MODULE
 if __name__ == "__main__":
     try:
         initial_processing()
-        print("\nTotal Execution time: \033[1m%s\033[0m\n" % formatting_codes.calc_timer_values(time.time() - abs_start))
     except KeyboardInterrupt:
         exit("TERMINATED BY USER")

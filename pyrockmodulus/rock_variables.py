@@ -24,6 +24,7 @@ _rocktype_dictionary = {
     "Chalk": ["Sedimentary", 'fuchsia', 'SC']
 }
 
+# Dictionary to hold common values of Poisson Ratio and Density
 _poisson_density_range = [
     {'Rock Type': 'Andesite', 'Group': 'Igneous', 'Min_P': 0.2, 'Max_P': 0.35, 'Min_D': 2.172, 'Max_D': 3.052},
     {'Rock Type': 'Basalt', 'Group': 'Igneous', 'Min_P': 0.1, 'Max_P': 0.35, 'Min_D': 0.736, 'Max_D': 3.124},
@@ -49,6 +50,7 @@ _poisson_density_range = [
     {'Rock Type': 'Tuff', 'Group': 'Igneous', 'Min_P': 0.1, 'Max_P': 0.28, 'Min_D': 1.6, 'Max_D': 2.78}
 ]
 
+# Dictionary to hold the SR cluster points
 _rock_tatone_et_al_points = {
     'Limestone': [
         {2: 3.02949612882451, 3: 3.09595164266821, 4: 3.16386493534127, 5: 3.23326798491433, 6: 3.30419347093409,
@@ -2125,6 +2127,7 @@ _rock_tatone_et_al_points = {
     ]
 }
 
+# Dictionary to hold the MR cluster points
 _rock_deere_miller_points = {
     'Diabase': [
         {2: 271.821582581245, 3: 282.635038475416, 4: 296.643037864525, 5: 308.443927167721, 6: 324.742962668905,
