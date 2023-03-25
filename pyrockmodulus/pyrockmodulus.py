@@ -292,7 +292,7 @@ class modulus_ratio:
         if rock_type_to_plot:
             print("\tPlotting Modulus Ratio for %s Clusters" % formatting_codes.bold_text(rock_type_to_plot))
         else:
-            print("\tPlotting Deere Miller for All Clusters")
+            print("\tPlotting Modulus Ratio for %s Clusters" % formatting_codes.bold_text("ALL"))
 
         # Initialise Plotting Axis
         if ax is None:
@@ -343,7 +343,29 @@ class poisson_density():
         return df
 
 
-    def plot_span_chart(self, df_to_plot, variable_span, variable_label, variable_units, ax=None):
+    def check_df_col_validity(self, df_to_plot, var, err_message="['Min_P', 'Max_P'] or ['Min_D', 'Max_D']"):
+        """
+        Checks if values are within the DataFrame column passed.
+
+        :param df_to_plot: Panda Dataframe to plot
+        :type df_to_plot: pandas.DataFrame
+        :param var: Valriable name to check
+        :type var: str
+        :param err_message: Validation message for Options available to user
+        :type err_message: str
+
+        :return: True
+        :rtype: bool
+        :raise KeyError: The value entered is not within the available options.
+        """
+
+        if var not in df_to_plot:
+            raise KeyError("Available Options %s" % err_message)
+
+        return
+
+
+    def plot_span_chart(self, df_to_plot, variable_span, variable_label, variable_units, ax=None, **kwargs):
         """
         Plot a chart divided by the rock type and rock group.
 
@@ -372,28 +394,30 @@ class poisson_density():
         # Get the total number of groups
         size = dfx.size()
 
+        # Check data for the Span Chart
+        for dat in variable_span:
+            self.check_df_col_validity(df_to_plot, dat)
         # Get data for the Span Chart
         # X is the Rock Name and Y is the Parameter to plot
         # Change the grey to the required bar color
-        df_to_plot.plot.barh(x='Rock Type', y=variable_span, stacked=True, color=['white', 'grey'], alpha=0.5, ax=ax)
+        df_to_plot.plot.barh(x='Rock Type', y=variable_span, stacked=True, color=['white', 'grey'], alpha=0.5, ax=ax, **kwargs)
 
-        # If groups are defined, Assign initial locations
+        # Make key, value pairs of the groups and their Cummalitive length to draw the H lines.
+        df_dict_groups = dict(zip(list(dfx.groups.keys()), list(np.cumsum(dfx.size()))))
+        # initilise variable
         hline_loc = 0
-        hline_loc_old = 0
-        counter = 1
-        for k, v in dfx:
-            hline_loc += len(v)  # New location is after the first group
+        # Loop over the key value pair and draw H lines and their corresponding key midway.
+        for counter, (k, v) in enumerate(df_dict_groups.items()):
+            # Skip over and not draw the last line.
             if counter != len(size):
-                plt.axhline(hline_loc - 0.5, ls='--', color='black', alpha=0.5)  # Plot Division Line
+                plt.axhline(v - 0.5, ls='--', color='black', alpha=0.5)  # Plot Division Line
             # Annotate text in the middle of the group with a white background
-            plt.text(0.025 * plt.gca().get_xlim()[1], (hline_loc_old + hline_loc - 1) / 2, k, rotation=90,
+            plt.text(0.125 + plt.gca().get_xlim()[0], (v + hline_loc - 1) / 2, k, rotation=90,
                      color='green', fontweight='bold', va='center', bbox=dict(boxstyle="square",
                                                                               ec=(1., 1., 1.),
                                                                               fc=(1., 1., 1.),
                                                                               ))
-            hline_loc_old = hline_loc  # Update line location
-            # Condition to skip over and not draw the last line
-            counter += 1
+            hline_loc = v  # Update line location
 
         # Cosmetics to the plotted curve
         # Disable any y-label information as this is determined by the DataFrame being plotted
@@ -561,6 +585,5 @@ if __name__ == "__main__":
         plt.ylabel("Emod")
         plx.legend()
         plt.show()
-        print("\nTotal Execution time: \033[1m%s\033[0m\n" % calc_timer_values(time.time() - abs_start))
     except KeyboardInterrupt:
         exit("TERMINATED BY USER")
