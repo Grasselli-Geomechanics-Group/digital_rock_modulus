@@ -20,9 +20,9 @@ setuptools.setup(
     install_requires=[
         "pandas>=0.0",
         "numpy>=1.0",
-        "scipy~=1.2.1",
+        "scipy>=1.2.1",
         "matplotlib>=3.5",
-        "seaborn~=0.11.0",
+        "seaborn>=0.11.0",
     ]
 
 )
